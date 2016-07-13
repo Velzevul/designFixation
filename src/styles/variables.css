@@ -1,0 +1,20 @@
+:root {
+  --baseline: 0.75rem;
+
+  --fontFamily: 'Open Sans', sans-serif;
+  --fontSize: 0.938rem;
+  --fontSizeSmall: 0.813rem;
+
+  --lineHeight: 1.125rem;
+
+  --colorTextDark:  #2C3643;
+  --colorTextMed:   #5B636D;
+  --colorTextLight: #ADB1B6;
+
+  --colorBorder:    #D0D0D0;
+
+  --colorAccent1: #68A1E4;
+  --colorAccent2: #E4A868;
+  --colorError:   #E46868;
+  --colorSuccess: #6EB96F;
+}

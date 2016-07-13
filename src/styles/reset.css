@@ -1,0 +1,56 @@
+@import './variables.css';
+
+:global(*) {
+  margin: 0;
+  padding: 0;
+}
+
+:global(*),
+:global(*::before),
+:global(*::after) {
+  box-sizing: border-box;
+}
+
+:global(html),
+:global(body) {
+  height: 100%;
+}
+
+:global(body) {
+  font-family: var(--fontFamily);
+  font-size: var(--fontSize);
+  line-height: var(--lineHeight);
+
+  color: var(--colorTextMed);
+}
+
+:global(input),
+:global(textarea),
+:global(button) {
+  font: inherit;
+  line-height: inherit;
+
+  color: inherit;
+
+  border: none;
+  background: none;
+}
+
+:global(button) {
+  cursor: pointer;
+}
+
+:global(textarea) {
+  resize: vertical;
+}
+
+:global(h1),
+:global(h2),
+:global(h3),
+:global(h4),
+:global(h5),
+:global(h6),
+:global(small) {
+  font: inherit;
+  line-height: inherit;
+}
