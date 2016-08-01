@@ -1,0 +1,32 @@
+@import '../../styles/variables.css';
+
+.Section {
+  display: flex;
+
+  border-top: 1px solid var(--colorBorder);
+}
+
+.SectionHeader {
+  width: 20%;
+  padding: calc(var(--baseline) * 2);
+
+  &__title {
+    font-size: 0.913rem;
+    color: var(--colorTextLight);
+  }
+
+  &__query {
+    /**/
+  }
+}
+
+.SectionBody {
+  flex: 1;
+  display: flex;
+  padding: calc(var(--baseline) * 2);
+
+  &__column {
+    flex: 1;
+    padding: 0 calc(var(--baseline) * 3/4);
+  }
+}

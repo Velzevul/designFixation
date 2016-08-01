@@ -8,4 +8,4 @@ import './styles/reset.css'
 
 ReactDOM.render((
   <App />
-), document.getElementById('app'))
+), document.getElementById('designFixationApp'))
