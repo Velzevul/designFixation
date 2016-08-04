@@ -1,6 +1,0 @@
-@import '../../styles/variables.css';
-
-.KeywordQuery {
-  font-size: 1rem;
-  color: var(--colorTextDark);
-}

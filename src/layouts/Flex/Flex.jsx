@@ -1,10 +1,9 @@
 import React from 'react'
 
 const Flex = ({
+  flexDirection = 'row',
   justifyContent = 'flex-start',
   alignItems = 'center',
-  extraClassNames = '',
-  flexDirection = 'row',
   children
 }) => {
   const style = {
@@ -17,7 +16,7 @@ const Flex = ({
   }
 
   return (
-    <div style={style} className={extraClassNames}>
+    <div style={style}>
       {children}
     </div>
   )

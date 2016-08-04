@@ -1,0 +1,225 @@
+{
+  "history": [
+    {
+      "type": "keyword",
+      "query": "UI",
+      "examples": [
+        {
+          "id": "375558056408552456",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/474x/f1/d7/b5/f1d7b5c1d27ab05a51108d4dec4dd402.jpg"
+        },
+        {
+          "id": "278589926928722988",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/41/6c/27/416c278a199545d4d0921b4e6e4c5aa9.jpg"
+        },
+        {
+          "id": "395402042267571408",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/e5/8d/d9/e58dd902a674f6e4022662a3f219816d.jpg"
+        },
+        {
+          "id": "375558056408552456",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/474x/f1/d7/b5/f1d7b5c1d27ab05a51108d4dec4dd402.jpg"
+        },
+        {
+          "id": "278589926928722988",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/41/6c/27/416c278a199545d4d0921b4e6e4c5aa9.jpg"
+        },
+        {
+          "id": "395402042267571408",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/e5/8d/d9/e58dd902a674f6e4022662a3f219816d.jpg"
+        },
+        {
+          "id": "375558056408552456",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/474x/f1/d7/b5/f1d7b5c1d27ab05a51108d4dec4dd402.jpg"
+        },
+        {
+          "id": "278589926928722988",
+          "isCollected": true,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/41/6c/27/416c278a199545d4d0921b4e6e4c5aa9.jpg"
+        },
+        {
+          "id": "395402042267571408",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/e5/8d/d9/e58dd902a674f6e4022662a3f219816d.jpg"
+        },
+        {
+          "id": "375558056408552456",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/474x/f1/d7/b5/f1d7b5c1d27ab05a51108d4dec4dd402.jpg"
+        },
+        {
+          "id": "278589926928722988",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/41/6c/27/416c278a199545d4d0921b4e6e4c5aa9.jpg"
+        },
+        {
+          "id": "395402042267571408",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/e5/8d/d9/e58dd902a674f6e4022662a3f219816d.jpg"
+        },
+        {
+          "id": "375558056408552456",
+          "isCollected": true,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/474x/f1/d7/b5/f1d7b5c1d27ab05a51108d4dec4dd402.jpg"
+        },
+        {
+          "id": "278589926928722988",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/41/6c/27/416c278a199545d4d0921b4e6e4c5aa9.jpg"
+        },
+        {
+          "id": "395402042267571408",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/e5/8d/d9/e58dd902a674f6e4022662a3f219816d.jpg"
+        },
+        {
+          "id": "375558056408552456",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/474x/f1/d7/b5/f1d7b5c1d27ab05a51108d4dec4dd402.jpg"
+        },
+        {
+          "id": "278589926928722988",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/41/6c/27/416c278a199545d4d0921b4e6e4c5aa9.jpg"
+        },
+        {
+          "id": "395402042267571408",
+          "isCollected": true,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/e5/8d/d9/e58dd902a674f6e4022662a3f219816d.jpg"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "image": {
+        "id": "395402042267571408",
+        "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/e5/8d/d9/e58dd902a674f6e4022662a3f219816d.jpg"
+      },
+      "examples": [
+        {
+          "id": "381046818454514386",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/2a/2b/72/2a2b729cff602417d93561d3b1d78908.jpg"
+        },
+        {
+          "id": "251146116697882182",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/0d/23/3f/0d233ff7156e298829abb09be140ecc3.jpg"
+        },
+        {
+          "id": "476114991832273770",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/b3/e1/4a/b3e14a1e6fec59ed626f3cf7c802f51d.jpg"
+        },
+        {
+          "id": "189432728051324328",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/67/1a/8c/671a8c0e518f1c2b2ef81327ba86b05a.jpg"
+        },
+        {
+          "id": "381046818454514386",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/2a/2b/72/2a2b729cff602417d93561d3b1d78908.jpg"
+        },
+        {
+          "id": "251146116697882182",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/0d/23/3f/0d233ff7156e298829abb09be140ecc3.jpg"
+        },
+        {
+          "id": "476114991832273770",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/b3/e1/4a/b3e14a1e6fec59ed626f3cf7c802f51d.jpg"
+        },
+        {
+          "id": "189432728051324328",
+          "isCollected": true,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/67/1a/8c/671a8c0e518f1c2b2ef81327ba86b05a.jpg"
+        },
+        {
+          "id": "381046818454514386",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/2a/2b/72/2a2b729cff602417d93561d3b1d78908.jpg"
+        },
+        {
+          "id": "251146116697882182",
+          "isCollected": true,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/0d/23/3f/0d233ff7156e298829abb09be140ecc3.jpg"
+        },
+        {
+          "id": "476114991832273770",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/b3/e1/4a/b3e14a1e6fec59ed626f3cf7c802f51d.jpg"
+        },
+        {
+          "id": "189432728051324328",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/67/1a/8c/671a8c0e518f1c2b2ef81327ba86b05a.jpg"
+        },
+        {
+          "id": "381046818454514386",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/2a/2b/72/2a2b729cff602417d93561d3b1d78908.jpg"
+        },
+        {
+          "id": "251146116697882182",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/0d/23/3f/0d233ff7156e298829abb09be140ecc3.jpg"
+        },
+        {
+          "id": "476114991832273770",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/b3/e1/4a/b3e14a1e6fec59ed626f3cf7c802f51d.jpg"
+        },
+        {
+          "id": "189432728051324328",
+          "isCollected": true,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/67/1a/8c/671a8c0e518f1c2b2ef81327ba86b05a.jpg"
+        }
+      ]
+    },
+    {
+      "type": "keyword",
+      "query": "dashboard",
+      "examples": [
+        {
+          "id": "116038127876687086",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/8c/c2/e9/8cc2e990dcde99fa3ecc458b321e6bde.jpg"
+        },
+        {
+          "id": "127930445643431714",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/50/c7/85/50c7859e03f2774040790a604e7cba15.jpg"
+        },
+        {
+          "id": "116038127876687086",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/8c/c2/e9/8cc2e990dcde99fa3ecc458b321e6bde.jpg"
+        },
+        {
+          "id": "127930445643431714",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/50/c7/85/50c7859e03f2774040790a604e7cba15.jpg"
+        },
+        {
+          "id": "116038127876687086",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/8c/c2/e9/8cc2e990dcde99fa3ecc458b321e6bde.jpg"
+        },
+        {
+          "id": "127930445643431714",
+          "isCollected": false,
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/564x/50/c7/85/50c7859e03f2774040790a604e7cba15.jpg"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+@import '../../styles/variables.css';
+
+.LoadingComponent {
+  height: 100%;
+  width: 100%;
+}

@@ -18,10 +18,12 @@
 
 :global(body) {
   font-family: var(--fontFamily);
-  font-size: var(--fontSize);
-  line-height: var(--lineHeight);
+  font-size: var(--fontSizeDefault);
+  line-height: 1.5;
 
-  color: var(--colorTextMed);
+  color: var(--colorTextDefault);
+
+  background: var(--colorBgDefault);
 }
 
 :global(input),

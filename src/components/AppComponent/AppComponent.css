@@ -1,0 +1,19 @@
+@import '../../styles/variables.css';
+
+.AppComponent {
+  height: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  align-content: stretch;
+
+  &__header {
+    border-bottom: 1px solid var(--colorBorder);
+  }
+
+  &__body {
+    flex: 1;
+    overflow: auto;
+  }
+}

@@ -1,0 +1,19 @@
+@import '../../styles/variables.css';
+
+.ImageQueryComponent {
+  /**/
+
+  &__image {
+    width: calc(var(--baseline) * 3);
+    height: calc(var(--baseline) * 3);
+
+    overflow: hidden;
+
+    border: 1px solid var(--colorBorder);
+
+    & > :global(img) {
+      display: block;
+      max-width: 100%;
+    }
+  }
+}

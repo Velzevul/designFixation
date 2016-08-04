@@ -3,49 +3,73 @@ import React from 'react'
 const baseline = 0.750
 import styles from './Media.css'
 
-const Media = ({
-  alignItems = 'flex-start',
-  extraClassNames = '',
-  children
-}) => {
-  const style = {
-    alignItems
-  }
-
-  return (
-    <div style={style} className={`${styles.media} ${extraClassNames}`}>
-      {children}
-    </div>
-  )
-}
-
 const MediaBody = ({
-  extraClassNames = '',
-  children
+  content
 }) => {
   return (
-    <div className={`${styles.media__body} ${extraClassNames}`}>
-      {children}
+    <div className={styles.media__body}>
+      {content}
     </div>
   )
 }
 
 const MediaFigure = ({
-  n = 1,
-  nl = 0,
-  extraClassNames = '',
-  children
+  n,
+  content,
+  reverse = false
 }) => {
-  const style = {
-    marginRight: `${baseline * n}rem`,
-    marginLeft: `${baseline * nl}rem`
+  let style = {}
+  if (reverse) {
+    style.marginLeft = `${baseline * n}rem`
+  } else {
+    style.marginRight = `${baseline * n}rem`
   }
 
   return (
-    <div style={style} className={`${styles.media__figure} ${extraClassNames}`}>
-      {children}
+    <div style={style} className={styles.media__figure}>
+      {content}
     </div>
   )
 }
 
-export {Media, MediaBody, MediaFigure}
+const Media = ({
+  figure,
+  body,
+  n = 1,
+  reverse = false,
+  alignItems = 'flex-start'
+}) => {
+  const style = {
+    alignItems
+  }
+
+  const figureElement = (
+    <MediaFigure
+      content={figure}
+      reverse={reverse}
+      n={n} />
+  )
+
+  const bodyElement = (
+    <MediaBody
+      content={body} />
+  )
+
+  if (reverse) {
+    return (
+      <div style={style} className={styles.media}>
+        {bodyElement}
+        {figureElement}
+      </div>
+    )
+  } else {
+    return (
+      <div style={style} className={styles.media}>
+        {figureElement}
+        {bodyElement}
+      </div>
+    )
+  }
+}
+
+export default Media

@@ -1,0 +1,9 @@
+@import '../../styles/variables.css';
+
+.HistoriesComponent {
+  padding:  calc(var(--baseline) * 2);
+
+  &__item {
+    /**/
+  }
+}

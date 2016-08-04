@@ -2,10 +2,16 @@ import 'babel-polyfill'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/App'
+import AppComponent from './components/AppComponent'
+import configureStore from './store'
+import {Provider} from 'react-redux'
 
 import './styles/reset.css'
 
+const store = configureStore()
+
 ReactDOM.render((
-  <App />
+  <Provider store={store}>
+    <AppComponent />
+  </Provider>
 ), document.getElementById('designFixationApp'))
