@@ -15,6 +15,16 @@
       "js": [
         "./contentScript.js"
       ]
+    },
+    {
+      "matches": ["*://www.pinterest.com/*"],
+      "exclude_matches": [
+        "*://www.pinterest.com/news*"
+      ],
+      "js": [
+        "./xhrInterceptor.js"
+      ],
+      "run_at": "document_start"
     }
   ],
   "browser_action": {

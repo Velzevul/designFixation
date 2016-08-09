@@ -25,5 +25,19 @@ chrome.runtime.onMessage.addListener(request => {
     .then(json => {
       console.log('history: ', request.payload, json)
     })
+  } else if (request.type === 'xhr' && request.url === '/resource/RepinResource/create/') {
+    const exampleId = JSON.parse(request.response).resource.options.pin_id
+
+    fetch(`https://vdziubak.com/designFixationServer/history/latest/examples/${exampleId}`, {
+      method: 'PUT',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log('example: ', json)
+    })
   }
 })

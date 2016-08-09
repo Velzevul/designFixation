@@ -10,110 +10,6 @@ const categoriesRegexp = /^\/categories\/([^\/]*)\/$/
 const topicsRegexp = /^\/topics\/([^\/]*)\/$/
 const boardRegexp = /^\/([^\/]*)\/([^\/]*)\/$/
 
-setInterval(() => {
-  if (window.location.href !== prevLocation.href) {
-    examplesSeen = {}
-
-    if (pinRegexp.test(window.location.pathname)) {
-      const pinId = pinRegexp.exec(window.location.pathname)[1]
-      const closeUp = document.querySelector('.Closeup')
-
-      if (closeUp) {
-        closeUp.addEventListener('scroll', () => {
-          const currentScrollPosition = closeUp.scrollTop
-
-          if (Math.abs(currentScrollPosition - lastScrollPosition) > scrolltheshold) {
-            registerExamplesSeen(document.querySelectorAll('.closeupBottom .pinImageWrapper'))
-            lastScrollPosition = currentScrollPosition
-          }
-        }, false)
-      }
-
-      const payload = {
-        history: {
-          type: 'related',
-          examples: [],
-          pinUrl: document.querySelector('.pinImage').src,
-          pinId
-        }
-      }
-
-      chrome.runtime.sendMessage({
-        type: 'history',
-        payload
-      })
-    } else if (searcnRegexp.test(window.location.pathname)) {
-      const searchQuery = window.decodeURIComponent(searchQueryRegexp.exec(window.location.search)[1])
-      const payload = {
-        history: {
-          type: 'search',
-          query: searchQuery,
-          image: null,
-          examples: []
-        }
-      }
-
-      chrome.runtime.sendMessage({
-        type: 'history',
-        payload
-      })
-    } else if (categoriesRegexp.test(window.location.pathname)) {
-      const category = categoriesRegexp.exec(window.location.pathname)[1]
-      console.log(`category ${category}`)
-      const payload = {
-        history: {
-          type: 'category',
-          image: null,
-          examples: [],
-          category
-        }
-      }
-
-      chrome.runtime.sendMessage({
-        type: 'history',
-        payload
-      })
-    } else if (topicsRegexp.test(window.location.pathname)) {
-      const topic = topicsRegexp.exec(window.location.pathname)[1]
-      console.log(`topic for ${topic}`)
-      const payload = {
-        history: {
-          type: 'topic',
-          image: null,
-          examples: [],
-          topic
-        }
-      }
-
-      chrome.runtime.sendMessage({
-        type: 'history',
-        payload
-      })
-    } else if (boardRegexp.test(window.location.pathname)) {
-      const matches = boardRegexp.exec(window.location.pathname)
-      const boardAuthor = matches[1]
-      const boardName = matches[2]
-      console.log(`board ${boardName} by ${boardAuthor}`)
-      const payload = {
-        history: {
-          type: 'board',
-          image: null,
-          examples: [],
-          boardAuthor,
-          boardName
-        }
-      }
-
-      chrome.runtime.sendMessage({
-        type: 'history',
-        payload
-      })
-    }
-  }
-
-  prevLocation = Object.assign({}, window.location)
-}, 100)
-
 const registerExamplesSeen = (exampleElementsAvailable) => {
   console.log(exampleElementsAvailable.length)
 
@@ -152,7 +48,7 @@ const registerExamplesSeen = (exampleElementsAvailable) => {
   console.log({length: Object.keys(examplesSeen).length, objects: examplesSeen})
 }
 
-window.addEventListener('scroll', () => {
+const scrollListener = () => {
   const currentScrollPosition = window.scrollY
 
   if (Math.abs(currentScrollPosition - lastScrollPosition) > scrolltheshold) {
@@ -160,4 +56,117 @@ window.addEventListener('scroll', () => {
 
     lastScrollPosition = currentScrollPosition
   }
-}, false)
+}
+
+setInterval(() => {
+  if (window.location.href !== prevLocation.href) {
+    examplesSeen = {}
+    window.removeEventListener('scroll', scrollListener, false)
+
+    if (pinRegexp.test(window.location.pathname)) {
+      const pinId = pinRegexp.exec(window.location.pathname)[1]
+      const closeUp = document.querySelector('.Closeup')
+
+      if (closeUp) {
+        closeUp.addEventListener('scroll', () => {
+          const currentScrollPosition = closeUp.scrollTop
+
+          if (Math.abs(currentScrollPosition - lastScrollPosition) > scrolltheshold) {
+            registerExamplesSeen(document.querySelectorAll('.closeupBottom .pinImageWrapper'))
+            lastScrollPosition = currentScrollPosition
+          }
+        }, false)
+      }
+
+      const payload = {
+        history: {
+          type: 'related',
+          examples: [],
+          pinUrl: document.querySelector('.pinImage') ? document.querySelector('.pinImage').src : document.querySelector('.transitionImage .pinImg').src,
+          pinId
+        }
+      }
+
+      chrome.runtime.sendMessage({
+        type: 'history',
+        payload
+      })
+    } else if (searcnRegexp.test(window.location.pathname)) {
+      const searchQuery = window.decodeURIComponent(searchQueryRegexp.exec(window.location.search)[1])
+      const payload = {
+        history: {
+          type: 'search',
+          query: searchQuery,
+          image: null,
+          examples: []
+        }
+      }
+
+      chrome.runtime.sendMessage({
+        type: 'history',
+        payload
+      })
+
+      window.addEventListener('scroll', scrollListener, false)
+    } else if (categoriesRegexp.test(window.location.pathname)) {
+      const category = categoriesRegexp.exec(window.location.pathname)[1]
+      console.log(`category ${category}`)
+      const payload = {
+        history: {
+          type: 'category',
+          image: null,
+          examples: [],
+          category
+        }
+      }
+
+      chrome.runtime.sendMessage({
+        type: 'history',
+        payload
+      })
+
+      window.addEventListener('scroll', scrollListener, false)
+    } else if (topicsRegexp.test(window.location.pathname)) {
+      const topic = topicsRegexp.exec(window.location.pathname)[1]
+      console.log(`topic for ${topic}`)
+      const payload = {
+        history: {
+          type: 'topic',
+          image: null,
+          examples: [],
+          topic
+        }
+      }
+
+      chrome.runtime.sendMessage({
+        type: 'history',
+        payload
+      })
+
+      window.addEventListener('scroll', scrollListener, false)
+    } else if (boardRegexp.test(window.location.pathname)) {
+      const matches = boardRegexp.exec(window.location.pathname)
+      const boardAuthor = matches[1]
+      const boardName = matches[2]
+      console.log(`board ${boardName} by ${boardAuthor}`)
+      const payload = {
+        history: {
+          type: 'board',
+          image: null,
+          examples: [],
+          boardAuthor,
+          boardName
+        }
+      }
+
+      chrome.runtime.sendMessage({
+        type: 'history',
+        payload
+      })
+
+      window.addEventListener('scroll', scrollListener, false)
+    }
+  }
+
+  prevLocation = Object.assign({}, window.location)
+}, 100)
