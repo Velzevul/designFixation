@@ -8,7 +8,6 @@ const searcnRegexp = /^\/search\/pins\/$/
 const searchQueryRegexp = /q=([^&]*)/
 const categoriesRegexp = /^\/categories\/([^\/]*)\/$/
 const topicsRegexp = /^\/topics\/([^\/]*)\/$/
-const newsRegexp = /^\/news\/([^\/]*)\/$/
 const boardRegexp = /^\/([^\/]*)\/([^\/]*)\/$/
 
 setInterval(() => {
@@ -17,8 +16,6 @@ setInterval(() => {
 
     if (pinRegexp.test(window.location.pathname)) {
       const pinId = pinRegexp.exec(window.location.pathname)[1]
-      // send new history to server
-      console.log(`pin ${pinId}`)
       const closeUp = document.querySelector('.Closeup')
 
       if (closeUp) {
@@ -31,27 +28,86 @@ setInterval(() => {
           }
         }, false)
       }
+
+      const payload = {
+        history: {
+          type: 'related',
+          examples: [],
+          pinUrl: document.querySelector('.pinImage').src,
+          pinId
+        }
+      }
+
+      chrome.runtime.sendMessage({
+        type: 'history',
+        payload
+      })
     } else if (searcnRegexp.test(window.location.pathname)) {
       const searchQuery = window.decodeURIComponent(searchQueryRegexp.exec(window.location.search)[1])
-      console.log(`search for ${searchQuery}`)
-      // send new history to server
+      const payload = {
+        history: {
+          type: 'search',
+          query: searchQuery,
+          image: null,
+          examples: []
+        }
+      }
+
+      chrome.runtime.sendMessage({
+        type: 'history',
+        payload
+      })
     } else if (categoriesRegexp.test(window.location.pathname)) {
       const category = categoriesRegexp.exec(window.location.pathname)[1]
       console.log(`category ${category}`)
-      // send new history to server
+      const payload = {
+        history: {
+          type: 'category',
+          image: null,
+          examples: [],
+          category
+        }
+      }
+
+      chrome.runtime.sendMessage({
+        type: 'history',
+        payload
+      })
     } else if (topicsRegexp.test(window.location.pathname)) {
       const topic = topicsRegexp.exec(window.location.pathname)[1]
       console.log(`topic for ${topic}`)
-      // send new history to server
-    } else if (newsRegexp.test(window.location.pathname)) {
-      console.log('news')
-      // send new history to server
+      const payload = {
+        history: {
+          type: 'topic',
+          image: null,
+          examples: [],
+          topic
+        }
+      }
+
+      chrome.runtime.sendMessage({
+        type: 'history',
+        payload
+      })
     } else if (boardRegexp.test(window.location.pathname)) {
       const matches = boardRegexp.exec(window.location.pathname)
-      const username = matches[1]
-      const boardname = matches[2]
-      console.log(`board ${boardname} by ${username}`)
-      // send new history to server
+      const boardAuthor = matches[1]
+      const boardName = matches[2]
+      console.log(`board ${boardName} by ${boardAuthor}`)
+      const payload = {
+        history: {
+          type: 'board',
+          image: null,
+          examples: [],
+          boardAuthor,
+          boardName
+        }
+      }
+
+      chrome.runtime.sendMessage({
+        type: 'history',
+        payload
+      })
     }
   }
 
@@ -61,23 +117,36 @@ setInterval(() => {
 const registerExamplesSeen = (exampleElementsAvailable) => {
   console.log(exampleElementsAvailable.length)
 
+  let payload = {
+    examples: []
+  }
+
   for (let exampleElement of exampleElementsAvailable) {
     const splitHref = exampleElement.href.split('/')
     const exampleId = splitHref[splitHref.length - 2]
+    const exampleDim = exampleElement.getBoundingClientRect()
 
     if (examplesSeen[exampleId] === undefined) {
       const example = {
         id: exampleId,
         url: exampleElement.querySelector('img').src,
-        boundingClientRect: exampleElement.getBoundingClientRect(),
-        node: exampleElement
+        aspectRatio: exampleDim.width / exampleDim.height,
+        node: exampleElement // for debugging purposes
       }
 
-      if ((example.boundingClientRect.bottom < window.innerHeight) &&
-          (example.boundingClientRect.bottom > 0)) {
+      if ((exampleDim.bottom < window.innerHeight) &&
+          (exampleDim.bottom > 0)) {
+        payload.examples.push(example)
         examplesSeen[exampleId] = example
       }
     }
+  }
+
+  if (payload.examples.length > 0) {
+    chrome.runtime.sendMessage({
+      type: 'examples',
+      payload
+    })
   }
 
   console.log({length: Object.keys(examplesSeen).length, objects: examplesSeen})
