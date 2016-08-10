@@ -1,43 +1,44 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {fetchHistory} from '../../store/historyActions'
-import LoadingComponent from '../LoadingComponent'
-import HistoriesComponent from '../HistoriesComponent'
+import {fetchHistories} from '../../store/historiesActions'
+import HistoryContainer from '../HistoryContainer'
+import List from '../../layouts/List'
 
 class HistoriesContainer extends React.Component {
   componentWillMount () {
-    const {fetchHistory} = this.props
+    const {fetchHistories} = this.props
 
-    fetchHistory()
+    // setInterval(fetchHistories, 200)
+    fetchHistories()
   }
 
   render () {
-    const {items, isFetching} = this.props
+    const {items} = this.props
 
-    if (isFetching) {
-      return (
-        <LoadingComponent />
-      )
-    } else {
-      return (
-        <HistoriesComponent items={items} />
-      )
-    }
+    const historyItems = items.map(i =>
+      <HistoryContainer item={i} />
+    )
+
+    return (
+      <List
+        alignItems="stretch"
+        n={0}
+        items={historyItems} />
+    )
   }
 }
 
 export default connect(
   state => {
     return {
-      isFetching: state.history.isFetching,
-      items: state.history.items
+      items: state.histories.items
     }
   },
   dispatch => {
     return {
-      fetchHistory: () => {
-        dispatch(fetchHistory())
+      fetchHistories: () => {
+        dispatch(fetchHistories())
       }
     }
   }

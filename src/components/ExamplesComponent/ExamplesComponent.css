@@ -1,0 +1,33 @@
+@import '../../styles/variables.css';
+
+.ExamplesComponent {
+  display: flex;
+  flex-wrap: wrap;
+
+  margin-bottom: -3px;
+
+  &__item {
+    top: 0;
+    position: relative;
+    width: 5px;
+    height: calc(var(--baseline) * 1.5);
+    margin-bottom: 3px;
+
+    cursor: pointer;
+    background: white;
+
+    border-left: 1px solid var(--colorBorder);
+
+    transition-property: top;
+    transition-duration: 0.2s;
+  }
+    &__item_is_collected {
+      background: var(--colorAccent1);
+    }
+    &__item_is_focused {
+      top: 2px;
+    }
+    &__item_is_focus_adjacent {
+      top: 1px;
+    }
+}

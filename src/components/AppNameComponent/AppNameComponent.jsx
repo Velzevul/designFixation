@@ -4,7 +4,7 @@ import styles from './AppNameComponent.css'
 
 const AppNameComponent = () => {
   return (
-    <div className={styles.AppNameComponent}>History Drawer</div>
+    <div className={styles.AppNameComponent}>Inspiration Seeking History</div>
   )
 }
 

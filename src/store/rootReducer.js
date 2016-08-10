@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux'
 import popup from './popupReducer'
-import history from './historyReducer'
+import histories from './historiesReducer'
 
 const rootReducer = combineReducers({
   popup,
-  history
+  histories
 })
 
 export default rootReducer

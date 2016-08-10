@@ -5,8 +5,7 @@ export default {
     currentIndex: null,
     historyId: null
   },
-  history: {
-    isFetching: false,
+  histories: {
     items: []
   }
 }

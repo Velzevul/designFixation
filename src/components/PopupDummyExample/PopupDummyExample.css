@@ -1,6 +1,0 @@
-@import '../../styles/variables.css';
-
-.PopupDummyExample {
-  width: calc(var(--baseline) * 15);
-  height: calc(var(--baseline) * 15);
-}

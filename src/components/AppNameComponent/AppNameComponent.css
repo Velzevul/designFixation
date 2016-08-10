@@ -1,13 +1,9 @@
 @import '../../styles/variables.css';
 
 .AppNameComponent {
-  padding:  calc(var(--baseline) * 1)
-            calc(var(--baseline) * 2)
-            calc(var(--baseline) * 1)
-            calc(var(--baseline) * 2);
-            
   font-size: var(--fontSizeLarge);
   font-weight: 300;
 
+  text-align: center;
   color: var(--colorTextLight);
 }

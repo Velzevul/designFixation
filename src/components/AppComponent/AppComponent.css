@@ -2,18 +2,36 @@
 
 .AppComponent {
   height: 100%;
-  max-width: 300px;
   display: flex;
   flex-direction: column;
   justify-items: flex-start;
   align-content: stretch;
 
   &__header {
+    padding:  calc(var(--baseline) * 1)
+              calc(var(--baseline) * 2)
+              calc(var(--baseline) * 1)
+              calc(var(--baseline) * 2);
+
     border-bottom: 1px solid var(--colorBorder);
   }
 
-  &__body {
+  &__summary {
+    padding:  calc(var(--baseline) * 1)
+              calc(var(--baseline) * 2)
+              calc(var(--baseline) * 1)
+              calc(var(--baseline) * 2);
+
+    border-bottom: 1px solid var(--colorBorder);
+  }
+
+  &__history {
+    padding:  calc(var(--baseline) * 2)
+              0
+              0
+              0;
+
     flex: 1;
-    overflow: auto;
+    overflow-x: auto;
   }
 }

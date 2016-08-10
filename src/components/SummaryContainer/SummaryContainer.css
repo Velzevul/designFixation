@@ -1,0 +1,6 @@
+@import '../../styles/variables.css';
+
+.SummaryContainer {
+  height: calc(var(--baseline) * 5);
+  background: yellow;
+}

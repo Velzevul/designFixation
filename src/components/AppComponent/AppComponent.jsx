@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './AppComponent.css'
 import AppNameComponent from '../AppNameComponent'
 import HistoriesContainer from '../HistoriesContainer'
-import PopupContainer from '../PopupContainer'
+import SummaryContainer from '../SummaryContainer'
 
 const AppComponent = () => {
   return (
@@ -12,11 +12,13 @@ const AppComponent = () => {
         <AppNameComponent />
       </div>
 
-      <div className={styles.AppComponent__body}>
-        <HistoriesContainer />
+      <div className={styles.AppComponent__summary}>
+        <SummaryContainer />
       </div>
 
-      <PopupContainer />
+      <div className={styles.AppComponent__history}>
+        <HistoriesContainer />
+      </div>
     </div>
   )
 }

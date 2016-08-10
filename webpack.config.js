@@ -20,8 +20,7 @@ const getPlugins = ({
 
   plugins.push(new webpack.DefinePlugin({
     'process.env': {
-      NODE_ENV: JSON.stringify(NODE_ENV),
-      DESIGN_FIXATION_SERVER_URL: JSON.stringify(process.env.DESIGN_FIXATION_SERVER_URL)
+      NODE_ENV: JSON.stringify(NODE_ENV)
     }
   }))
 
@@ -71,7 +70,7 @@ const config = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]-[hash:base64:5]!postcss'),
+        loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss'),
         include: PATHS.src
       }
     ]
