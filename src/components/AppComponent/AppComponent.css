@@ -26,11 +26,6 @@
   }
 
   &__history {
-    padding:  calc(var(--baseline) * 2)
-              0
-              0
-              0;
-
     flex: 1;
     overflow-x: auto;
   }

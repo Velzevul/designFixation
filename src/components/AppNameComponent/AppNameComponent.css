@@ -1,9 +1,0 @@
-@import '../../styles/variables.css';
-
-.AppNameComponent {
-  font-size: var(--fontSizeLarge);
-  font-weight: 300;
-
-  text-align: center;
-  color: var(--colorTextLight);
-}

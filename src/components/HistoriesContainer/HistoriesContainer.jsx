@@ -17,7 +17,7 @@ class HistoriesContainer extends React.Component {
     const {items} = this.props
 
     const historyItems = items.map(i =>
-      <HistoryContainer item={i} />
+      <HistoryContainer history={i} />
     )
 
     return (

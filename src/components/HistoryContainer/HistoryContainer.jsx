@@ -1,10 +1,7 @@
 import React from 'react'
 
-import HistoryQueryComponent from '../HistoryQueryComponent'
-import DetailsViewComponent from '../DetailsViewComponent'
-import ExamplesComponent from '../ExamplesComponent'
-import Block from '../../layouts/Block'
-import Media from '../../layouts/Media'
+import HistoryDetailsComponent from '../HistoryDetailsComponent'
+import HistorySummaryComponent from '../HistorySummaryComponent'
 
 class HistoryContainer extends React.Component {
   constructor (props) {
@@ -32,42 +29,30 @@ class HistoryContainer extends React.Component {
   }
 
   render () {
-    const {item} = this.props
+    const {history} = this.props
 
-    const historyExamples = (
-      <ExamplesComponent
-        examples={item.examples}
+    const historySummary = (
+      <HistorySummaryComponent
+        history={history}
         focusedExampleIndex={this.state.detailsViewFocus}
         detailsViewShown={this.state.detailsViewShown}
         focusExampleCallback={this.setDetailsViewFocus}
         clickExampleCallback={this.toggleDetailsView} />
     )
 
-    const historyQuery = (
-      <HistoryQueryComponent history={item} />
-    )
-
     let detailsView = ''
     if (this.state.detailsViewShown) {
       detailsView = (
-        <Block n={2}>
-          <DetailsViewComponent
-            examples={item.examples}
-            focus={this.state.detailsViewFocus}
-            toggleCallback={this.toggleDetailsView} />
-        </Block>
+        <HistoryDetailsComponent
+          examples={history.examples}
+          focus={this.state.detailsViewFocus}
+          toggleCallback={this.toggleDetailsView} />
       )
     }
 
     return (
       <div>
-        <div style={{padding: '0 24px 24px 24px'}}>
-          <Media
-            alignItems="center"
-            figure={historyQuery}
-            body={historyExamples} />
-        </div>
-
+        {historySummary}
         {detailsView}
       </div>
     )
