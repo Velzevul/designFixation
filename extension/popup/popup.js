@@ -14,6 +14,10 @@ class AppComponent extends React.Component {
     }
   }
 
+  componentWillMount () {
+
+  }
+
   typeParticipantId (e) {
     this.setState({
       participantId: e.target.value
@@ -32,6 +36,8 @@ class AppComponent extends React.Component {
     localStorage.setItem('inspirationSeekingSessionId', sessionId)
     localStorage.setItem('inspirationSeekingParticipantId', this.state.participantId)
     localStorage.setItem('inspirationSeekingCondition', this.state.condition)
+
+    window.open(`https://localhost.com/app`, 'SystemWindow', 'centerscreen, titlebar=0')
 
     this.setState({
       sessionId

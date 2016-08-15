@@ -9,8 +9,7 @@ class HistoriesContainer extends React.Component {
   componentWillMount () {
     const {fetchHistories} = this.props
 
-    // setInterval(fetchHistories, 200)
-    fetchHistories()
+    setInterval(fetchHistories, 200)
   }
 
   render () {

@@ -10,9 +10,17 @@ const categoriesRegexp = /^\/categories\/([^\/]*)\/$/
 const topicsRegexp = /^\/topics\/([^\/]*)\/$/
 const boardRegexp = /^\/([^\/]*)\/([^\/]*)\/$/
 
-const registerExamplesSeen = (exampleElementsAvailable) => {
-  console.log(exampleElementsAvailable.length)
+// let sessionId = localStorage.getItem('inspirationSeekingSessionId')
+// let participantId = localStorage.getItem('inspirationSeekingParticipantId')
+// let condition = localStorage.getItem('inspirationSeekingCondition')
+//
+// setInterval(() => {
+//   sessionId = localStorage.getItem('inspirationSeekingSessionId')
+//   participantId = localStorage.getItem('inspirationSeekingParticipantId')
+//   condition = localStorage.getItem('inspirationSeekingCondition')
+// }, 100)
 
+const registerExamplesSeen = (exampleElementsAvailable) => {
   let payload = {
     examples: []
   }
@@ -31,7 +39,7 @@ const registerExamplesSeen = (exampleElementsAvailable) => {
       }
 
       if ((exampleDim.bottom < window.innerHeight) &&
-          (exampleDim.bottom > 0)) {
+      (exampleDim.bottom > 0)) {
         payload.examples.push(example)
         examplesSeen[exampleId] = example
       }
@@ -44,8 +52,6 @@ const registerExamplesSeen = (exampleElementsAvailable) => {
       payload
     })
   }
-
-  console.log({length: Object.keys(examplesSeen).length, objects: examplesSeen})
 }
 
 const scrollListener = () => {
@@ -80,8 +86,7 @@ setInterval(() => {
 
       const payload = {
         history: {
-          type: 'related',
-          examples: [],
+          type: 'closeUp',
           pinUrl: document.querySelector('.pinImage') ? document.querySelector('.pinImage').src : document.querySelector('.transitionImage .pinImg').src,
           pinId
         }
@@ -92,6 +97,10 @@ setInterval(() => {
         payload
       })
     } else if (searcnRegexp.test(window.location.pathname)) {
+      const target = window.decodeURIComponent(searchQueryRegexp.exec(window.location.search)[1])
+      const link = `https://www.pinterest.com/search/pins/?q=${target}`
+      registerSearchActivity(target, link)
+
       const searchQuery = window.decodeURIComponent(searchQueryRegexp.exec(window.location.search)[1])
       const payload = {
         history: {
