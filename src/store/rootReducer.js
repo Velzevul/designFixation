@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux'
-import histories from './historiesReducer'
+import data from './dataReducer'
 
 const rootReducer = combineReducers({
-  histories
+  data
 })
 
 export default rootReducer

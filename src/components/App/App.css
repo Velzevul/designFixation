@@ -1,0 +1,26 @@
+@import '../../styles/variables.css';
+
+.App {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+
+  &__header {
+    border-bottom: 1px solid
+  }
+
+  &__body {
+    flex: 1;
+    display: flex;
+  }
+
+  &__sidebar {
+    width: calc(var(--baseline) * 30);
+  }
+
+  &__main {
+    flex: 1;
+    overflow: auto;
+  }
+}

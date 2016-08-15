@@ -1,10 +1,15 @@
 import 'whatwg-fetch'
 
-export const RECEIVE_HISTORIES = 'RECEIVE_HISTORIES'
+export const REQUEST_DATA = 'REQUEST_DATA'
+export const RECEIVE_DATA = 'RECEIVE_DATA'
 
-export const fetchHistories = () => {
+export const fetchData = () => {
   return dispatch => {
-    fetch(`https://vdziubak.com/designFixationServer/history`, {
+    dispatch({
+      type: REQUEST_DATA
+    })
+
+    fetch('https://vdziubak.com/designFixationServer/examples', {
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json'
@@ -14,8 +19,8 @@ export const fetchHistories = () => {
       .then(json => {
         if (json.success) {
           dispatch({
-            type: RECEIVE_HISTORIES,
-            items: json.data.histories
+            type: RECEIVE_DATA,
+            items: json.data.examples
           })
         } else {
           console.error(json.data)

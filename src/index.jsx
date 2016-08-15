@@ -2,7 +2,7 @@ import 'babel-polyfill'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import AppComponent from './components/AppComponent'
+import App from './components/App'
 import configureStore from './store'
 import {Provider} from 'react-redux'
 
@@ -12,6 +12,6 @@ const store = configureStore()
 
 ReactDOM.render((
   <Provider store={store}>
-    <AppComponent />
+    <App />
   </Provider>
 ), document.getElementById('designFixationApp'))

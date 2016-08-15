@@ -1,5 +1,7 @@
 export default {
-  histories: {
-    items: []
+  data: {
+    queries: [],
+    examples: [],
+    isFetching: false
   }
 }

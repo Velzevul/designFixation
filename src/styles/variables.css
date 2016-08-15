@@ -5,18 +5,15 @@
   --fontSizeSmall: 0.750rem;
   --fontSizeMed: 0.875rem;
   --fontSizeLarge: 1.250rem;
-  --fontSizeDefault: var(--fontSizeMed);
 
   --colorTextLight: white;
   --colorTextMed:   #CECECE;
   --colorTextDark:  #8C8D8E;
-  --colorTextDefault: var(--colorTextLight);
 
   --colorBorder:    #848586;
 
   --colorBgXDark: #1d1e1f;
   --colorBgDark: #3C3E3F;
-  --colorBgDefault: var(--colorBgDark);
 
   --colorAccent1: #FF6B00;
   --colorAccent2: #00FFFE;
