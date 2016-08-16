@@ -66,12 +66,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
     let xhrResponse = null
     let payload = null
 
-    console.log(xhrType)
-
     switch (xhrType) {
       case 'BaseSearchResource':
         xhrResponse = JSON.parse(xhrElem.dataset.response)
-        chrome.runtime.sendMessage({type: xhrType, url: xhrElem.dataset.url, response: xhrResponse})
+        console.log({type: xhrType, url: xhrElem.dataset.url, response: xhrResponse})
         payload = {
           type: 'examples',
           examples: xhrResponse.resource_response.data.results
@@ -82,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
       case 'TopicFeedResource':
       case 'BoardFeedResource':
         xhrResponse = JSON.parse(xhrElem.dataset.response)
-        chrome.runtime.sendMessage({type: xhrType, url: xhrElem.dataset.url, response: xhrResponse})
+        console.log({type: xhrType, url: xhrElem.dataset.url, response: xhrResponse})
         payload = {
           type: 'examples',
           examples: xhrResponse.resource_response.data
@@ -90,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
         break
       case 'RelatedPinFeedResource':
         xhrResponse = JSON.parse(xhrElem.dataset.response)
-        chrome.runtime.sendMessage({type: xhrType, url: xhrElem.dataset.url, response: xhrResponse})
+        console.log({type: xhrType, url: xhrElem.dataset.url, response: xhrResponse})
         payload = {
           type: 'closeUpExamples',
           examples: xhrResponse.resource_response.data
@@ -98,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
         break
       case 'RepinResource':
         xhrResponse = JSON.parse(xhrElem.dataset.response)
-        chrome.runtime.sendMessage({type: xhrType, url: xhrElem.dataset.url, response: xhrResponse})
+        console.log({type: xhrType, url: xhrElem.dataset.url, response: xhrResponse})
         const pinId = xhrResponse.resource.options.pin_id
         const location = window.location.href.split('/')
         const example = {

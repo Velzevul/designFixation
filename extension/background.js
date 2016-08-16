@@ -37,29 +37,36 @@ chrome.runtime.onMessage.addListener(message => {
     }
   } else if (message.type === 'examples') {
     // { type: 'examples', examples: [] }
-    const e = message.examples[0]
-    // sometimes this Pinterest resource also returns related topics. First
-    // check is aimed to see if resource's response actually contains pins.
-    // Second check looks if the current page has already been loaded
+    // sometimes this Pinterest resources returns weird responses. 1st and 2nd
+    // checks verify that resource's response contains pins.
+    // The last check looks if the current page has already been loaded
     // previously...
-    if (e.aggregated_pin_data && currentQuery.examples[e.id] === undefined) {
-      for (let example of message.examples) {
-        currentQuery.examples[example.id] = currentQuery.nextLoadedPage
-      }
+    if (message.examples instanceof Array) {
+      const e = message.examples[0]
 
-      currentQuery.nextLoadedPage += 1
+      if (e.aggregated_pin_data && currentQuery.examples[e.id] === undefined) {
+        for (let example of message.examples) {
+          currentQuery.examples[example.id] = currentQuery.nextLoadedPage
+        }
+
+        currentQuery.nextLoadedPage += 1
+      }
     }
   } else if (message.type === 'closeUpExamples') {
     // { type: 'examples', examples: [] }
-    const e = message.examples[0]
-    // sometimes this Pinterest resource also returns related topics. First
-    // check is aimed to see if resource's response actually contains pins.
-    // Second check looks if the current page has already been loaded
+
+    // sometimes this Pinterest resources returns weird responses. 1st and 2nd
+    // checks verify that resource's response contains pins.
+    // The last check looks if the current page has already been loaded
     // previously...
-    if (e.aggregated_pin_data && currentQuery.examples[e.id] === undefined) {
-      for (let example of message.examples) {
-        // -1 serves as an indicator of semi-relevance
-        currentQuery.examples[example.id] = -1
+    if (message.examples instanceof Array) {
+      const e = message.examples[0]
+
+      if (e.aggregated_pin_data && currentQuery.examples[e.id] === undefined) {
+        for (let example of message.examples) {
+          // -1 serves as an indicator of semi-relevance
+          currentQuery.examples[example.id] = -1
+        }
       }
     }
   } else if (message.type === 'add') {
