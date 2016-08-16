@@ -4,6 +4,7 @@ const searcnRegexp = /^\/search\/pins\/$/
 const searchQueryRegexp = /q=([^&]*)/
 const categoriesRegexp = /^\/categories\/([^\/]*)\/$/
 const topicsRegexp = /^\/topics\/([^\/]*)\/$/
+const pinRegexp = /^\/pin\/([^\/]*)\/$/
 const boardRegexp = /^\/([^\/]*)\/([^\/]*)\/$/
 
 setInterval(() => {
@@ -32,6 +33,8 @@ setInterval(() => {
         query: `${topic} topic`,
         url: window.location
       })
+    } else if (pinRegexp.test(window.location.pathname)) {
+      //
     } else if (boardRegexp.test(window.location.pathname)) {
       const matches = boardRegexp.exec(window.location.pathname)
       const boardName = matches[2]

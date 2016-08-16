@@ -63,13 +63,18 @@ document.addEventListener('DOMContentLoaded', function (event) {
   const xhrElem = document.getElementById('xhrElem')
   xhrElem.addEventListener('XhrCall', () => {
     const xhrType = xhrElem.dataset.url.split('/')[2]
+    let xhrResponse = null
     let payload = null
+
+    console.log(xhrType)
 
     switch (xhrType) {
       case 'BaseSearchResource':
+        xhrResponse = JSON.parse(xhrElem.dataset.response)
+        chrome.runtime.sendMessage({type: xhrType, url: xhrElem.dataset.url, response: xhrResponse})
         payload = {
           type: 'examples',
-          examples: xhrElem.dataset.response.resource_response.data.results
+          examples: xhrResponse.resource_response.data.results
         }
         break
       case 'SearchResource':
@@ -77,38 +82,38 @@ document.addEventListener('DOMContentLoaded', function (event) {
       case 'CategoryFeedResource':
       case 'TopicFeedResource':
       case 'BoardFeedResource':
+        xhrResponse = JSON.parse(xhrElem.dataset.response)
+        chrome.runtime.sendMessage({type: xhrType, url: xhrElem.dataset.url, response: xhrResponse})
         payload = {
           type: 'examples',
-          examples: xhrElem.dataset.response.resource_response.data
+          examples: xhrResponse.resource_response.data
         }
         break
       case 'RepinResource':
-        const pinId = xhrElem.dataset.response.resource.options.pin_id
-        const location = window.location.split('/')
-        let example = {
+        xhrResponse = JSON.parse(xhrElem.dataset.response)
+        chrome.runtime.sendMessage({type: xhrType, url: xhrElem.dataset.url, response: xhrResponse})
+        const pinId = xhrResponse.resource.options.pin_id
+        const location = window.location.href.split('/')
+        const example = {
           id: pinId
         }
+        let pinElement = ''
 
         if (location[3] === 'pin' && location[4] === pinId) {
-          example.img = document.querySelector('')
+          pinElement = document.querySelector('.pinImage') ? document.querySelector('.pinImage') : document.querySelector('.transitionImage .pinImg')
+        } else {
+          pinElement = document.querySelector(`.pinImageWrapper[href*="${pinId}"] img`)
         }
 
-        const pinWrapper = document.querySelectorAll('.pinImageWrapper')
+        example.src = pinElement.src
+        example.aspectRatio = pinElement.getBoundingClientRect().height / pinElement.getBoundingClientRect().width
 
         payload = {
           type: 'add',
           example
         }
-
         break
     }
-    // const payload = {
-    //   type: 'xhr',
-    //   method: xhrElem.dataset.method,
-    //   url: xhrElem.dataset.url,
-    //   data: xhrElem.dataset.data,
-    //   response: xhrElem.dataset.response
-    // }
 
     if (payload) {
       chrome.runtime.sendMessage(payload)
