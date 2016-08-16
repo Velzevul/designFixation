@@ -78,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
         }
         break
       case 'SearchResource':
-      case 'RelatedPinFeedResource':
       case 'CategoryFeedResource':
       case 'TopicFeedResource':
       case 'BoardFeedResource':
@@ -86,6 +85,14 @@ document.addEventListener('DOMContentLoaded', function (event) {
         chrome.runtime.sendMessage({type: xhrType, url: xhrElem.dataset.url, response: xhrResponse})
         payload = {
           type: 'examples',
+          examples: xhrResponse.resource_response.data
+        }
+        break
+      case 'RelatedPinFeedResource':
+        xhrResponse = JSON.parse(xhrElem.dataset.response)
+        chrome.runtime.sendMessage({type: xhrType, url: xhrElem.dataset.url, response: xhrResponse})
+        payload = {
+          type: 'closeUpExamples',
           examples: xhrResponse.resource_response.data
         }
         break
