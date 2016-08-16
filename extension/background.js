@@ -24,8 +24,8 @@ chrome.runtime.onMessage.addListener(message => {
       currentQuery = queries[queries.length - 1]
 
       socket.emit('create query', {
-        query: message.query,
-        url: message.url
+        query: currentQuery.q,
+        url: currentQuery.url
       })
     }
 
@@ -67,7 +67,7 @@ chrome.runtime.onMessage.addListener(message => {
     console.log(message)
     // { type: 'add', example: {} }
     socket.emit('create example', {
-      query: currentQuery.query,
+      query: currentQuery.q,
       relevance: currentQuery.examples[message.example.id] || -1,
       example: message.example
     })
