@@ -3,7 +3,10 @@
   "name": "Design Fixation Client",
   "version": "0.1",
   "background": {
-    "scripts": ["background.js"],
+    "scripts": [
+      "socket.io-1.4.5.js",
+      "background.js"
+    ],
     "persistent": false
   },
   "content_scripts": [

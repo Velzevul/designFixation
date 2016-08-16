@@ -5,7 +5,7 @@ const XHRInterceptor = function () {
 
   var div = document.createElement('div')
 
-  div.id = 'XhrElem'
+  div.id = 'xhrElem'
   div.style.display = 'none'
   document.body.appendChild(div)
 
@@ -60,16 +60,58 @@ document.addEventListener('DOMContentLoaded', function (event) {
   injectedScript.text = '(' + XHRInterceptor + ')("");'
   document.body.appendChild(injectedScript)
 
-  const XhrElem = document.getElementById('XhrElem')
-  XhrElem.addEventListener('XhrCall', () => {
-    const payload = {
-      type: 'xhr',
-      method: XhrElem.dataset.method,
-      url: XhrElem.dataset.url,
-      data: XhrElem.dataset.data,
-      response: XhrElem.dataset.response
-    }
+  const xhrElem = document.getElementById('xhrElem')
+  xhrElem.addEventListener('XhrCall', () => {
+    const xhrType = xhrElem.dataset.url.split('/')[2]
+    let payload = null
 
-    chrome.runtime.sendMessage(payload)
+    switch (xhrType) {
+      case 'BaseSearchResource':
+        payload = {
+          type: 'examples',
+          examples: xhrElem.dataset.response.resource_response.data.results
+        }
+        break
+      case 'SearchResource':
+      case 'RelatedPinFeedResource':
+      case 'CategoryFeedResource':
+      case 'TopicFeedResource':
+      case 'BoardFeedResource':
+        payload = {
+          type: 'examples',
+          examples: xhrElem.dataset.response.resource_response.data
+        }
+        break
+      case 'RepinResource':
+        const pinId = xhrElem.dataset.response.resource.options.pin_id
+        const location = window.location.split('/')
+        let example = {
+          id: pinId
+        }
+
+        if (location[3] === 'pin' && location[4] === pinId) {
+          example.img = document.querySelector('')
+        }
+
+        const pinWrapper = document.querySelectorAll('.pinImageWrapper')
+
+        payload = {
+          type: 'add',
+          example
+        }
+
+        break
+    }
+    // const payload = {
+    //   type: 'xhr',
+    //   method: xhrElem.dataset.method,
+    //   url: xhrElem.dataset.url,
+    //   data: xhrElem.dataset.data,
+    //   response: xhrElem.dataset.response
+    // }
+
+    if (payload) {
+      chrome.runtime.sendMessage(payload)
+    }
   })
 })
