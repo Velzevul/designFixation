@@ -1,4 +1,4 @@
-const socket = io('https://localhost.com/')
+const socket = io('https://vdziubak.com/', {path: '/designFixationServer'})
 
 let queries = []
 let currentQuery
@@ -13,9 +13,16 @@ const newQuery = (q, url) => {
 }
 const findQuery = (q) => queries.filter(query => query.q === q)[0]
 
+socket.on('confirm create', (msg) => {
+  console.log('confirm create', msg)
+})
+
+socket.on('error', (msg) => {
+  console.error('error', msg)
+})
+
 chrome.runtime.onMessage.addListener(message => {
   if (message.type === 'url') {
-    console.log(message)
     // { type: 'url', query: Str, url: Str }
     currentQuery = findQuery(message.query)
 
@@ -28,10 +35,7 @@ chrome.runtime.onMessage.addListener(message => {
         url: currentQuery.url
       })
     }
-
-    console.log(currentQuery)
   } else if (message.type === 'examples') {
-    console.log(message)
     // { type: 'examples', examples: [] }
     const e = message.examples[0]
     // sometimes this Pinterest resource also returns related topics. First
@@ -45,10 +49,7 @@ chrome.runtime.onMessage.addListener(message => {
 
       currentQuery.nextLoadedPage += 1
     }
-
-    console.log(currentQuery)
   } else if (message.type === 'closeUpExamples') {
-    console.log(message)
     // { type: 'examples', examples: [] }
     const e = message.examples[0]
     // sometimes this Pinterest resource also returns related topics. First
@@ -61,17 +62,12 @@ chrome.runtime.onMessage.addListener(message => {
         currentQuery.examples[example.id] = -1
       }
     }
-
-    console.log(currentQuery)
   } else if (message.type === 'add') {
-    console.log(message)
     // { type: 'add', example: {} }
     socket.emit('create example', {
       query: currentQuery.q,
       relevance: currentQuery.examples[message.example.id] || -1,
       example: message.example
     })
-
-    console.log(currentQuery)
   }
 })
