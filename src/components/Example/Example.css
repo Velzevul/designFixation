@@ -1,6 +1,37 @@
 @import '../../styles/variables.css';
 
 .Example {
-  /**/
-}
+  position: relative;
+  padding:  calc(var(--baseline) * 1.5)
+            calc(var(--baseline) * 1.5)
+            calc(var(--baseline) * 1.5)
+            calc(var(--baseline) * 1.5);
 
+  transition-property: background-color;
+  transition-duration: 0.1s;
+
+  &__imageWrapper {
+    max-height: calc(var(--baseline) * 28);
+    overflow: hidden;
+
+    transition-property: opacity;
+    transition-duration: 0.1s;
+  }
+
+  &__image {
+    display: block;
+    max-width: 100%;
+
+    cursor: pointer;
+  }
+}
+  .Example_compact {
+    padding:  calc(var(--baseline) * 1)
+              calc(var(--baseline) * 1)
+              calc(var(--baseline) * 1)
+              calc(var(--baseline) * 1);
+
+    & .Example__imageWrapper {
+      max-height: calc(var(--baseline) * 15);
+    }
+  }

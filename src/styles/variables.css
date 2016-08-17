@@ -1,10 +1,11 @@
 :root {
   --baseline: 0.75rem;
 
-  --fontFamily: 'Helvetica Neue', 'Helvetica', sans-serif;
+  --fontFamily: 'Open Sans', sans-serif;
   --fontSizeSmall: 0.750rem;
   --fontSizeMed: 0.875rem;
   --fontSizeLarge: 1.250rem;
+  --fontSizeDefault: var(--fontSizeMed);
 
   --colorTextLight: white;
   --colorTextMed:   #CECECE;

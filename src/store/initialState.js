@@ -1,7 +1,10 @@
 export default {
   data: {
     queries: [],
-    examples: [],
-    isFetching: false
+    examples: []
+  },
+  ui: {
+    highlightedQuery: null,
+    focusedQueries: []
   }
 }

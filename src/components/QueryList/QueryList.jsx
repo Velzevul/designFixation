@@ -3,7 +3,8 @@ import {connect} from 'react-redux'
 
 import styles from './QueryList.css'
 import Query from '../Query'
-import List from '../../layouts/List'
+import Title from '../Title'
+import Block from '../../layouts/Block'
 
 class QueryList extends React.Component {
   render () {
@@ -11,10 +12,15 @@ class QueryList extends React.Component {
 
     return (
       <div className={styles.QueryList}>
-        <List
-          items={queries.map(q =>
-            <Query query={q} />
-          )} />
+        <Block>
+          <Title title="Searches" />
+        </Block>
+
+        {queries.map((q, index) =>
+          <Query
+            key={index}
+            query={q} />
+        )}
       </div>
     )
   }
@@ -23,7 +29,7 @@ class QueryList extends React.Component {
 export default connect(
   state => {
     return {
-      queries: state.data.queries
+      queries: state.data.queries.sort((a, b) => b.examplesCount - a.examplesCount)
     }
   }
 )(QueryList)

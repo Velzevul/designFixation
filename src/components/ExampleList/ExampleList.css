@@ -1,5 +1,22 @@
 @import '../../styles/variables.css';
 
 .ExampleList {
-  
+  display: flex;
+  flex-flow: row;
+  justify-content: stretch;
+  padding: calc(var(--baseline) * 1);
+
+  &__column {
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    justify-content: stretch;
+  }
+
+  &__example {
+    /**/
+  }
 }
+  .ExampleList_compact {
+    /**/
+  }

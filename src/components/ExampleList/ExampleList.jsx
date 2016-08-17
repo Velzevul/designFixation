@@ -1,43 +1,46 @@
 import React from 'react'
-import {connect} from 'react-redux'
 
 import styles from './ExampleList.css'
 import Example from '../Example'
-import List from '../../layouts/List'
 
 class ExampleList extends React.Component {
   render () {
-    const {examples} = this.props
-
+    const {examples, compact = false} = this.props
     const columns = []
-    const nCols = 4
+    const nCols = compact ? 8 : 5
 
     for (let i = 0; i < nCols; i++) {
       const column = examples.filter((e, index) => {
         return index % nCols === i
-      }).map(e =>
-        <Example example={e} />
-      )
+      })
 
-      columns.push(
-        <List
-          key={i}
-          items={column} />
-      )
+      columns.push(column)
+    }
+
+    let classNames = [styles.ExampleList]
+    if (compact) {
+      classNames.push(styles.ExampleList_compact)
     }
 
     return (
-      <div className={styles.ExampleList}>
-        {columns}
+      <div className={classNames.join(' ')}>
+        {columns.map((column, i) =>
+          <div
+            key={i}
+            className={styles.ExampleList__column}>
+            {column.map((example, j) =>
+              <div
+                key={j}
+                className={styles.ExampleList__example}>
+                <Example
+                  compact={compact}
+                  example={example} />
+              </div>
+            )}</div>
+        )}
       </div>
     )
   }
 }
 
-export default connect(
-  state => {
-    return {
-      examples: state.data.examples
-    }
-  }
-)(ExampleList)
+export default ExampleList

@@ -1,6 +1,9 @@
 @import '../../styles/variables.css';
 
 .TaskDescription {
-  /**/
-}
+  padding: calc(var(--baseline) * 2);
 
+  &__body {
+    text-align: justify;
+  }
+}

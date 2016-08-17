@@ -4,57 +4,60 @@ import {connect} from 'react-redux'
 import styles from './App.css'
 import TaskDescription from '../TaskDescription'
 import QueryList from '../QueryList'
-import ExampleList from '../ExampleList'
+import CollectionView from '../CollectionView'
+import QueryView from '../QueryView'
 
-import {fetchData} from '../../store/dataActions'
+import socket from '../../store/socket'
+import {receiveData} from '../../store/dataActions'
 
 class App extends React.Component {
   componentWillMount () {
-    const {fetchData} = this.props
+    const {dispatch} = this.props
 
-    fetchData()
+    socket.emit('get data')
+    socket.on('data', (data) => {
+      dispatch(receiveData(data.queries, data.examples))
+    })
   }
 
   render () {
-    const {isFetching} = this.props
+    const {focusedQueries} = this.props
 
-    if (isFetching) {
-      return (
-        <div>Loading...</div>
+    let bodyEl = ''
+    if (focusedQueries.length > 0) {
+      bodyEl = (
+        <QueryView />
       )
     } else {
-      return (
-        <div className={styles.App}>
-          <div className={styles.App__header}>
+      bodyEl = (
+        <CollectionView />
+      )
+    }
+
+    return (
+      <div className={styles.App}>
+        <div className={styles.AppSidebar}>
+          <div className={styles.AppSidebar__header}>
             <TaskDescription />
           </div>
 
-          <div className={styles.App__body}>
-            <div className={styles.App__sidebar}>
-              <QueryList />
-            </div>
-
-            <div className={styles.App__main}>
-              <ExampleList />
-            </div>
+          <div className={styles.AppSidebar__body}>
+            <QueryList />
           </div>
         </div>
-      )
-    }
+
+        <div className={styles.App__main}>
+          {bodyEl}
+        </div>
+      </div>
+    )
   }
 }
 
 export default connect(
   state => {
     return {
-      isFetching: state.data.isFetching
-    }
-  },
-  dispatch => {
-    return {
-      fetchData: () => {
-        dispatch(fetchData())
-      }
+      focusedQueries: state.ui.focusedQueries
     }
   }
 )(App)

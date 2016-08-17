@@ -1,6 +1,24 @@
 @import '../../styles/variables.css';
 
 .Query {
-  /**/
-}
+  position: relative;
 
+  padding: calc(var(--baseline) / 2);
+  margin-left: -calc(var(--baseline) / 2);
+  cursor: pointer;
+
+  transition-property: background;
+  transition-duration: 0.2s;
+}
+  .Query_isFocused {
+    &:after {
+      content:'\00D7';
+      position: absolute;
+      top: 0;
+      right: var(--baseline);
+      display: block;
+
+      font-weight: 600;
+      line-height: calc(var(--fontSizeMed) * 2.4);
+    }
+  }
