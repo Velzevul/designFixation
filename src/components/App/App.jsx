@@ -24,14 +24,6 @@ class App extends React.Component {
     socket.on('data', (data) => {
       dispatch(receiveData(data.queries, data.examples, data.task))
     })
-
-    setTimeout(() => {
-      socket.emit('create study', {participantId: 'test', condition: 'system', taskAlias: 'conservatory'})
-    }, 3000)
-
-    setTimeout(() => {
-      socket.emit('kill study')
-    }, 5000)
   }
 
   render () {
