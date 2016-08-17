@@ -50,7 +50,7 @@ const TaskDescription = ({
 export default connect(
   state => {
     return {
-      task: state.data.task,
+      task: state.data.task || {},
       focusedQueries: state.data.queries.filter(q => state.ui.focusedQueries.indexOf(q.query) !== -1)
     }
   }

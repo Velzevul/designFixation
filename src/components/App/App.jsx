@@ -13,18 +13,25 @@ import {receiveStudy} from '../../store/studyActions'
 
 class App extends React.Component {
   componentWillMount () {
-    const {dispatch, sessionId, taskAlias} = this.props
+    const {dispatch} = this.props
 
-    socket.emit('get data', {sessionId, taskAlias})
     socket.emit('get study')
 
+    socket.on('study', (data) => {
+      dispatch(receiveStudy(data.participantId, data.sessionId, data.condition, data.taskAlias))
+      socket.emit('get data', {sessionId: data.sessionId, taskAlias: data.taskAlias})
+    })
     socket.on('data', (data) => {
       dispatch(receiveData(data.queries, data.examples, data.task))
     })
-    socket.on('study', (data) => {
-      dispatch(receiveStudy(data.participantId, data.sessionId, data.condition, data.taskAlias))
-      socket.emit('get data', {sessionId: data.sessionId, taskAlias: data.task.alias})
-    })
+
+    setTimeout(() => {
+      socket.emit('create study', {participantId: 'test', condition: 'system', taskAlias: 'conservatory'})
+    }, 3000)
+
+    setTimeout(() => {
+      socket.emit('kill study')
+    }, 5000)
   }
 
   render () {
