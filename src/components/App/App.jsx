@@ -9,14 +9,21 @@ import QueryView from '../QueryView'
 
 import socket from '../../store/socket'
 import {receiveData} from '../../store/dataActions'
+import {receiveStudy} from '../../store/studyActions'
 
 class App extends React.Component {
   componentWillMount () {
-    const {dispatch} = this.props
+    const {dispatch, sessionId, taskAlias} = this.props
 
-    socket.emit('get data')
+    socket.emit('get data', {sessionId, taskAlias})
+    socket.emit('get study')
+
     socket.on('data', (data) => {
-      dispatch(receiveData(data.queries, data.examples))
+      dispatch(receiveData(data.queries, data.examples, data.task))
+    })
+    socket.on('study', (data) => {
+      dispatch(receiveStudy(data.participantId, data.sessionId, data.condition, data.taskAlias))
+      socket.emit('get data', {sessionId: data.sessionId, taskAlias: data.task.alias})
     })
   }
 
@@ -57,6 +64,8 @@ class App extends React.Component {
 export default connect(
   state => {
     return {
+      sessionId: state.study.sessionId,
+      taskAlias: state.study.taskAlias,
       focusedQueries: state.ui.focusedQueries
     }
   }
