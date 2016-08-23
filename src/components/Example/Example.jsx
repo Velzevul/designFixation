@@ -32,6 +32,10 @@ const Example = ({
           className={styles.Example__image}
           src={example.example.src} />
       </div>
+      
+      <div className={styles.Example__description}>
+        {example.imageDescription}
+      </div>
     </div>
   )
 }

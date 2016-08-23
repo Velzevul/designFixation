@@ -56,7 +56,9 @@ const config = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
+  externals: ['ws'],
   module: {
+    noParse: ['ws'],
     loaders: [
       {
         test: /\.jsx?/,

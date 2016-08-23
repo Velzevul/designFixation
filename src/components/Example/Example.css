@@ -24,6 +24,13 @@
 
     cursor: pointer;
   }
+
+  &__description {
+    padding: calc(var(--baseline) / 4) calc(var(--baseline));
+    background: color(black);
+    color: white;
+    font-size: var(--fontSizeSmall);
+  }
 }
   .Example_compact {
     padding:  calc(var(--baseline) * 1)

@@ -31,8 +31,7 @@
     }
   ],
   "browser_action": {
-    "default_title": "Inspiration Seeking Study",
-    "default_popup": "popup/popup.html"
+    "default_title": "Inspiration Seeking Study"
   },
   "permissions": [
     "tabs"

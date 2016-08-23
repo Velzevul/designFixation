@@ -8,7 +8,7 @@ import CollectionView from '../CollectionView'
 import QueryView from '../QueryView'
 
 import socket from '../../store/socket'
-import {receiveData} from '../../store/dataActions'
+import {receiveData, receiveExample, receiveQuery} from '../../store/dataActions'
 import {receiveStudy} from '../../store/studyActions'
 
 class App extends React.Component {
@@ -21,6 +21,15 @@ class App extends React.Component {
       dispatch(receiveStudy(data.participantId, data.sessionId, data.condition, data.taskAlias))
       socket.emit('get data', {sessionId: data.sessionId, taskAlias: data.taskAlias})
     })
+
+    socket.on('confirm create example', e => {
+      dispatch(receiveExample(e))
+    })
+
+    socket.on('confirm create query', q => {
+      dispatch(receiveQuery(q))
+    })
+
     socket.on('data', (data) => {
       dispatch(receiveData(data.queries, data.examples, data.task))
     })

@@ -1,4 +1,4 @@
-import {RECEIVE_DATA, RECEIVE_QUERY_TASK} from './dataActions'
+import {RECEIVE_DATA, RECEIVE_QUERY_TASK, RECEIVE_EXAMPLE, RECEIVE_QUERY, INC_EXAMPLE_COUNTER} from './dataActions'
 import initialState from './initialState'
 
 const data = (
@@ -11,6 +11,32 @@ const data = (
         queries: action.queries,
         examples: action.examples,
         task: action.task
+      })
+    case RECEIVE_EXAMPLE:
+      return Object.assign({}, state, {
+        examples: [
+          ...state.examples,
+          action.example
+        ]
+      })
+    case RECEIVE_QUERY:
+      return Object.assign({}, state, {
+        queries: [
+          ...state.queries,
+          action.query
+        ]
+      })
+    case INC_EXAMPLE_COUNTER:
+      return Object.assign({}, state, {
+        queries: state.queries.map(q => {
+          if (q.query === action.query) {
+            return Object.assign({}, q, {
+              examplesCount: q.examplesCount + 1
+            })
+          } else {
+            return q
+          }
+        })
       })
     case RECEIVE_QUERY_TASK:
       return Object.assign({}, state, {
