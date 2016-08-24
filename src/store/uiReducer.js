@@ -1,4 +1,10 @@
-import {TOGGLE_HIGHLIGHT_QUERY, TOGGLE_FOCUS_QUERY, TOGGLE_FOCUS_KEYWORD} from './uiActions'
+import {
+  TOGGLE_HIGHLIGHT_QUERY,
+  TOGGLE_FOCUS_QUERY,
+  TOGGLE_FOCUS_KEYWORD,
+  CLEAR_FOCUSED_QUERIES,
+  CLEAR_FOCUSED_KEYWORDS
+} from './uiActions'
 import initialState from './initialState'
 
 const ui = (
@@ -43,6 +49,14 @@ const ui = (
       }
       return Object.assign({}, state, {
         focusedKeywords
+      })
+    case CLEAR_FOCUSED_QUERIES:
+      return Object.assign({}, state, {
+        focusedQueries: initialState.ui.focusedQueries
+      })
+    case CLEAR_FOCUSED_KEYWORDS:
+      return Object.assign({}, state, {
+        focusedKeywords: initialState.ui.focusedKeywords
       })
     default:
       return state

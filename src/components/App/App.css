@@ -32,4 +32,18 @@
               calc(var(--baseline) * 1)
               calc(var(--baseline) * 2);
   }
+
+  &__clearFilters {
+    font-size: var(--fontSizeSmall);
+    font-weight: 400;
+    line-height: 1.5;
+
+    color: var(--colorError);
+
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }

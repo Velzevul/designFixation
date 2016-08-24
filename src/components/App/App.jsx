@@ -9,9 +9,11 @@ import CollectionView from '../CollectionView'
 import KeywordView from '../KeywordView'
 import QueryView from '../QueryView'
 import Title from '../Title'
+import Flex from '../../layouts/Flex'
 
 import socket from '../../store/socket'
 import {receiveData, receiveExample, receiveQuery} from '../../store/dataActions'
+import {clearFocusedQueries, clearFocusedKeywords} from '../../store/uiActions'
 import {receiveStudy} from '../../store/studyActions'
 
 class App extends React.Component {
@@ -39,7 +41,7 @@ class App extends React.Component {
   }
 
   render () {
-    const {focusedQueries, focusedKeywords} = this.props
+    const {focusedQueries, focusedKeywords, condition, dispatch} = this.props
 
     let bodyEl = ''
     if (focusedQueries.length > 0) {
@@ -67,21 +69,53 @@ class App extends React.Component {
             <TaskDescription />
           </div>
 
-          <div className={styles.AppSidebar__title}>
-            <Title title="Searches" />
-          </div>
+          {condition === 'system'
+            ? <div className={styles.AppSidebar__title}>
+              <Flex
+                alignItems="center"
+                justifyContent="space-between">
+                <Title title="Searches" />
+                {focusedQueries.length > 0
+                  ? <button
+                    onClick={() => dispatch(clearFocusedQueries())}
+                    className={styles.AppSidebar__clearFilters}>clear all</button>
+                  : ''
+                }
+              </Flex>
+            </div>
+            : ''
+          }
 
-          <div className={styles.AppSidebar__body}>
-            <QueryList />
-          </div>
+          {condition === 'system'
+            ? <div className={styles.AppSidebar__body}>
+              <QueryList />
+            </div>
+            : ''
+          }
 
-          <div className={styles.AppSidebar__title}>
-            <Title title="Common Keywords" />
-          </div>
+          {condition === 'system'
+            ? <div className={styles.AppSidebar__title}>
+              <Flex
+                alignItems="center"
+                justifyContent="space-between">
+                <Title title="Common Keywords" />
+                {focusedKeywords.length > 0
+                  ? <button
+                    onClick={() => dispatch(clearFocusedKeywords())}
+                    className={styles.AppSidebar__clearFilters}>clear all</button>
+                  : ''
+                }
+              </Flex>
+            </div>
+            : ''
+          }
 
-          <div className={styles.AppSidebar__body}>
-            <KeywordList />
-          </div>
+          {condition === 'system'
+            ? <div className={styles.AppSidebar__body}>
+              <KeywordList />
+            </div>
+            : ''
+          }
         </div>
 
         <div className={styles.App__main}>
@@ -97,6 +131,7 @@ export default connect(
     return {
       sessionId: state.study.sessionId,
       taskAlias: state.study.taskAlias,
+      condition: state.study.condition,
       focusedQueries: state.ui.focusedQueries,
       focusedKeywords: state.ui.focusedKeywords
     }

@@ -43,6 +43,7 @@ const QueryView = ({
 
         {focusedKeywords.map((k, index) =>
           <KeywordExampleList
+            key={index}
             keyword={k}
             examples={directExamples} />
         )}
@@ -56,6 +57,7 @@ const QueryView = ({
 
       {focusedKeywords.map((k, index) =>
         <KeywordExampleList
+          key={index}
           keyword={k}
           examples={relatedExamples} />
       )}

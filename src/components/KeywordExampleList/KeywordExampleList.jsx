@@ -27,7 +27,9 @@ const KeywordExampleList = ({
       </Block>
     )
   } else {
-    return ''
+    return (
+      <span></span>
+    )
   }
 }
 
