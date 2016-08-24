@@ -1,4 +1,4 @@
-import {TOGGLE_HIGHLIGHT_QUERY, TOGGLE_FOCUS_QUERY} from './uiActions'
+import {TOGGLE_HIGHLIGHT_QUERY, TOGGLE_FOCUS_QUERY, TOGGLE_FOCUS_KEYWORD} from './uiActions'
 import initialState from './initialState'
 
 const ui = (
@@ -25,7 +25,24 @@ const ui = (
         ]
       }
       return Object.assign({}, state, {
-        focusedQueries: focusedQueries
+        focusedQueries
+      })
+    case TOGGLE_FOCUS_KEYWORD:
+      const targetKeywordIndex = state.focusedKeywords.indexOf(action.keyword)
+      let focusedKeywords = []
+      if (targetKeywordIndex === -1) {
+        focusedKeywords = [
+          ...state.focusedKeywords,
+          action.keyword
+        ]
+      } else {
+        focusedKeywords = [
+          ...state.focusedKeywords.slice(0, targetKeywordIndex),
+          ...state.focusedKeywords.slice(targetKeywordIndex + 1)
+        ]
+      }
+      return Object.assign({}, state, {
+        focusedKeywords
       })
     default:
       return state

@@ -25,4 +25,11 @@
     flex: 1;
     overflow: auto;
   }
+
+  &__title {
+    padding:  calc(var(--baseline) * 2)
+              calc(var(--baseline) * 2)
+              calc(var(--baseline) * 1)
+              calc(var(--baseline) * 2);
+  }
 }

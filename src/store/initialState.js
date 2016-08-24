@@ -6,7 +6,8 @@ export default {
   },
   ui: {
     highlightedQuery: null,
-    focusedQueries: []
+    focusedQueries: [],
+    focusedKeywords: []
   },
   study: {
     participantId: 'test',

@@ -1,12 +1,11 @@
 @import '../../styles/variables.css';
 
 .TaskDescription {
-  padding: calc(var(--baseline) * 2);
+  padding:  0
+            calc(var(--baseline) * 2);
+  text-align: justify;
+  position: relative;
 
-  &__body {
-    text-align: justify;
-    position: relative;
-  }
 
   &__main {
     /**/

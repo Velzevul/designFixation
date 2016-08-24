@@ -4,8 +4,11 @@ import {connect} from 'react-redux'
 import styles from './App.css'
 import TaskDescription from '../TaskDescription'
 import QueryList from '../QueryList'
+import KeywordList from '../KeywordList'
 import CollectionView from '../CollectionView'
+import KeywordView from '../KeywordView'
 import QueryView from '../QueryView'
+import Title from '../Title'
 
 import socket from '../../store/socket'
 import {receiveData, receiveExample, receiveQuery} from '../../store/dataActions'
@@ -36,12 +39,16 @@ class App extends React.Component {
   }
 
   render () {
-    const {focusedQueries} = this.props
+    const {focusedQueries, focusedKeywords} = this.props
 
     let bodyEl = ''
     if (focusedQueries.length > 0) {
       bodyEl = (
         <QueryView />
+      )
+    } else if (focusedKeywords.length > 0) {
+      bodyEl = (
+        <KeywordView />
       )
     } else {
       bodyEl = (
@@ -52,12 +59,28 @@ class App extends React.Component {
     return (
       <div className={styles.App}>
         <div className={styles.AppSidebar}>
+          <div className={styles.AppSidebar__title}>
+            <Title title="Design Task" />
+          </div>
+
           <div className={styles.AppSidebar__header}>
             <TaskDescription />
           </div>
 
+          <div className={styles.AppSidebar__title}>
+            <Title title="Searches" />
+          </div>
+
           <div className={styles.AppSidebar__body}>
             <QueryList />
+          </div>
+
+          <div className={styles.AppSidebar__title}>
+            <Title title="Common Keywords" />
+          </div>
+
+          <div className={styles.AppSidebar__body}>
+            <KeywordList />
           </div>
         </div>
 
@@ -74,7 +97,8 @@ export default connect(
     return {
       sessionId: state.study.sessionId,
       taskAlias: state.study.taskAlias,
-      focusedQueries: state.ui.focusedQueries
+      focusedQueries: state.ui.focusedQueries,
+      focusedKeywords: state.ui.focusedKeywords
     }
   }
 )(App)

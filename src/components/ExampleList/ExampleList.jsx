@@ -5,9 +5,8 @@ import Example from '../Example'
 
 class ExampleList extends React.Component {
   render () {
-    const {examples, compact = false} = this.props
+    const {examples, nCols} = this.props
     const columns = []
-    const nCols = compact ? 8 : 5
 
     for (let i = 0; i < nCols; i++) {
       const column = examples.filter((e, index) => {
@@ -18,9 +17,6 @@ class ExampleList extends React.Component {
     }
 
     let classNames = [styles.ExampleList]
-    if (compact) {
-      classNames.push(styles.ExampleList_compact)
-    }
 
     return (
       <div className={classNames.join(' ')}>
@@ -33,7 +29,7 @@ class ExampleList extends React.Component {
                 key={j}
                 className={styles.ExampleList__example}>
                 <Example
-                  compact={compact}
+                  compact={nCols > 5}
                   example={example} />
               </div>
             )}</div>

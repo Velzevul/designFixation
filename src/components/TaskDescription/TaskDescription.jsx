@@ -2,8 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import styles from './TaskDescription.css'
-import Title from '../Title'
-import Block from '../../layouts/Block'
 
 const TaskDescription = ({
   task,
@@ -32,17 +30,11 @@ const TaskDescription = ({
 
   return (
     <div className={styles.TaskDescription}>
-      <Block>
-        <Title title="Design Task" />
-      </Block>
-
-      <div className={styles.TaskDescription__body}>
-        <div className={styles.TaskDescription__main}>
-          {task.text}
-        </div>
-
-        {queryTasks}
+      <div className={styles.TaskDescription__main}>
+        {task.text}
       </div>
+
+      {queryTasks}
     </div>
   )
 }

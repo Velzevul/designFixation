@@ -7,14 +7,16 @@ const CollectionView = ({
   examples
 }) => {
   return (
-    <ExampleList examples={examples} />
+    <ExampleList
+      nCols={5}
+      examples={examples} />
   )
 }
 
 export default connect(
   state => {
     return {
-      examples: state.data.examples.sort((a, b) => {
+      examples: [...state.data.examples].sort((a, b) => {
         if (b.createdAt > a.createdAt) {
           return -1
         } else if (a.createdAt >= b.createdAt) {

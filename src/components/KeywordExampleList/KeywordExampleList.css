@@ -1,0 +1,19 @@
+@import '../../styles/variables.css';
+
+.KeywordExampleList {
+  background: color(var(--colorBorder) alpha(-75%));
+  display: flex;
+
+  &__keyword {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 600;
+  }
+
+  &__examples {
+    flex: 7;
+  }
+}
