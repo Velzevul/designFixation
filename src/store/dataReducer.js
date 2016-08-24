@@ -1,4 +1,10 @@
-import {RECEIVE_DATA, RECEIVE_QUERY_TASK, RECEIVE_EXAMPLE, RECEIVE_QUERY, INC_EXAMPLE_COUNTER} from './dataActions'
+import {
+  RECEIVE_DATA,
+  RECEIVE_QUERY_TASK,
+  RECEIVE_EXAMPLE,
+  RECEIVE_QUERY,
+  INC_EXAMPLE_COUNTER
+} from './dataActions'
 import initialState from './initialState'
 
 const data = (
@@ -10,14 +16,18 @@ const data = (
       return Object.assign({}, state, {
         queries: action.queries,
         examples: action.examples,
-        task: action.task
+        task: action.task,
+        stemDictionary: action.examples.reduce((carry, current) => {
+          return Object.assign({}, carry, current.stemDictionary)
+        }, state.stemDictionary)
       })
     case RECEIVE_EXAMPLE:
       return Object.assign({}, state, {
         examples: [
           ...state.examples,
           action.example
-        ]
+        ],
+        stemDictionary: Object.assign({}, state.stemDictionary, action.example.stemDictionary)
       })
     case RECEIVE_QUERY:
       return Object.assign({}, state, {

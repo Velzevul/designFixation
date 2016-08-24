@@ -9,13 +9,21 @@ const KeywordView = ({
   focusedKeywords,
   examples
 }) => {
-  const focusedKeywordsRegexp = new RegExp(`(${focusedKeywords.join('|')})`)
-  const nonKeywordExamples = examples.filter(e => !focusedKeywordsRegexp.test(e.imageDescription))
+  const nonKeywordExamples = examples.filter(e => {
+    for (let fk of focusedKeywords) {
+      if (e.imageDescriptionStems.indexOf(fk) !== -1) {
+        return false
+      }
+    }
+
+    return true
+  })
 
   return (
     <div className={styles.KeywordView}>
       {focusedKeywords.map((k, index) =>
         <KeywordExampleList
+          key={index}
           keyword={k}
           examples={examples} />
       )}

@@ -12,9 +12,16 @@ const QueryView = ({
   relatedExamples,
   focusedKeywords
 }) => {
-  const focusedKeywordsRegexp = new RegExp(`(${focusedKeywords.join('|')})`)
+  const nonKeywordDirectExamples = directExamples.filter(e => {
+    for (let fk of focusedKeywords) {
+      if (e.imageDescriptionStems.indexOf(fk) !== -1) {
+        return false
+      }
+    }
 
-  const nonKeywordDirectExamples = directExamples.filter(e => !focusedKeywords.length || !focusedKeywordsRegexp.test(e.imageDescription))
+    return true
+  })
+
   let directExamplesEl = ''
   if (nonKeywordDirectExamples.length) {
     directExamplesEl = (
@@ -24,9 +31,18 @@ const QueryView = ({
     )
   }
 
-  const nonKeywordRelatedExamples = relatedExamples.filter(e => !focusedKeywords.length || !focusedKeywordsRegexp.test(e.imageDescription))
+  const nonKeywordRelatedExamples = relatedExamples.filter(e => {
+    for (let fk of focusedKeywords) {
+      if (e.imageDescriptionStems.indexOf(fk) !== -1) {
+        return false
+      }
+    }
+
+    return true
+  })
+
   let relatedExamplesEl = ''
-  if (nonKeywordDirectExamples.length) {
+  if (nonKeywordRelatedExamples.length) {
     relatedExamplesEl = (
       <ExampleList
         nCols={8}

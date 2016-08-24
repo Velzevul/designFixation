@@ -1,4 +1,5 @@
 export const RECEIVE_STUDY = 'RECEIVE_STUDY'
+export const KILL_STUDY = 'KILL_STUDY'
 
 export const receiveStudy = (
   participantId,
@@ -12,5 +13,11 @@ export const receiveStudy = (
     sessionId,
     condition,
     taskAlias
+  }
+}
+
+export const killStudy = () => {
+  return {
+    type: KILL_STUDY
   }
 }

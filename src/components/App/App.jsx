@@ -14,7 +14,7 @@ import Flex from '../../layouts/Flex'
 import socket from '../../store/socket'
 import {receiveData, receiveExample, receiveQuery} from '../../store/dataActions'
 import {clearFocusedQueries, clearFocusedKeywords} from '../../store/uiActions'
-import {receiveStudy} from '../../store/studyActions'
+import {receiveStudy, killStudy} from '../../store/studyActions'
 
 class App extends React.Component {
   componentWillMount () {
@@ -24,7 +24,11 @@ class App extends React.Component {
 
     socket.on('study', (data) => {
       dispatch(receiveStudy(data.participantId, data.sessionId, data.condition, data.taskAlias))
-      socket.emit('get data', {sessionId: data.sessionId, taskAlias: data.taskAlias})
+      socket.emit('get data', {sessionId: data.training ? 'test' : data.sessionId, taskAlias: data.taskAlias})
+    })
+
+    socket.on('confirm kill study', () => {
+      dispatch(killStudy())
     })
 
     socket.on('confirm create example', e => {

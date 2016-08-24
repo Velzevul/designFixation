@@ -27,7 +27,6 @@ export default connect(
       : state.data.queries.map(q => q.query)
     const examples = state.data.examples.filter(e => queries.indexOf(e.query) !== -1)
     const stems = examples.reduce((carry, current) => [...carry, ...current.imageDescriptionStems], [])
-    const stemDictionary = examples.reduce((carry, current) => Object.assign({}, carry, current.stemDictionary), {})
 
     const keywords = []
     const stemIndexMap = {}
@@ -40,13 +39,10 @@ export default connect(
         stemIndexMap[stem] = keywords.length
         keywords.push({
           frequency: 1,
-          keyword: stemDictionary[stem],
           stem
         })
       }
     }
-
-    console.log(keywords)
 
     return {
       keywords: keywords.sort((a, b) => b.frequency - a.frequency)

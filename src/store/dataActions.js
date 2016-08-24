@@ -1,8 +1,8 @@
 import randomcolor from 'randomcolor'
-import algoliasearch from 'algoliasearch'
-
-const client = algoliasearch('74S1JNB1ZT', '3de6fdbafc477cf019673bb81043ae0d')
-const index = client.initIndex('DesignFixationStudyTasks')
+// import algoliasearch from 'algoliasearch'
+//
+// const client = algoliasearch('74S1JNB1ZT', '3de6fdbafc477cf019673bb81043ae0d')
+// const index = client.initIndex('DesignFixationStudyTasks')
 
 export const RECEIVE_DATA = 'RECEIVE_DATA'
 export const RECEIVE_QUERY_TASK = 'RECEIVE_QUERY_TASK'

@@ -1,4 +1,4 @@
-import {RECEIVE_STUDY} from './studyActions'
+import {RECEIVE_STUDY, KILL_STUDY} from './studyActions'
 import initialState from './initialState'
 
 const study = (
@@ -12,6 +12,10 @@ const study = (
         sessionId: action.sessionId,
         condition: action.condition,
         taskAlias: action.taskAlias
+      })
+    case KILL_STUDY:
+      return Object.assign({}, state, {
+        sessionId: null
       })
     default:
       return state

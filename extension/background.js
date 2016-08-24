@@ -18,13 +18,13 @@ let sessionId = null
 socket.emit('get study')
 
 socket.on('study', (data) => {
-  if (data.current) {
+  if (data.sessionId && !data.training) {
     console.log(`start study ${data.sessionId}`)
     sessionId = data.sessionId
   }
 })
 
-socket.on('kill study', () => {
+socket.on('confirm kill study', () => {
   console.log('end study')
   sessionId = null
 })

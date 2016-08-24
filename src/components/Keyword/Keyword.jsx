@@ -8,10 +8,11 @@ import {toggleFocusKeyword} from '../../store/uiActions'
 const Keyword = ({
   keyword,
   focusedKeywords,
-  toggleFocus
+  toggleFocus,
+  stemDictionary
 }) => {
   let classNames = [styles.Keyword]
-  if (focusedKeywords.indexOf(keyword.keyword) !== -1) {
+  if (focusedKeywords.indexOf(keyword.stem) !== -1) {
     classNames.push(styles.Keyword_isFocused)
   }
 
@@ -19,7 +20,7 @@ const Keyword = ({
     <div
       onClick={toggleFocus}
       className={classNames.join(' ')}>
-      {keyword.keyword} ({keyword.frequency})
+      {stemDictionary[keyword.stem]} ({keyword.frequency})
     </div>
   )
 }
@@ -27,15 +28,16 @@ const Keyword = ({
 export default connect(
   state => {
     return {
-      focusedKeywords: state.ui.focusedKeywords
+      focusedKeywords: state.ui.focusedKeywords,
+      stemDictionary: state.data.stemDictionary
     }
   },
   (dispatch, ownProps) => {
-    const {keyword: {keyword}} = ownProps
+    const {keyword: {stem}} = ownProps
 
     return {
       toggleFocus: () => {
-        dispatch(toggleFocusKeyword(keyword))
+        dispatch(toggleFocusKeyword(stem))
       }
     }
   }

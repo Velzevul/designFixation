@@ -2,7 +2,8 @@ export default {
   data: {
     queries: [],
     examples: [],
-    task: {}
+    task: {},
+    stemDictionary: {}
   },
   ui: {
     highlightedQuery: null,
@@ -10,9 +11,9 @@ export default {
     focusedKeywords: []
   },
   study: {
-    participantId: 'test',
-    sessionId: 'test',
-    condition: 'system',
-    taskAlias: 'cars'
+    participantId: '',
+    sessionId: null,
+    condition: 'baseline',
+    taskAlias: ''
   }
 }
