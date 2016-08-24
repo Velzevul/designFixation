@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import styles from './Example.css'
-import {toggleHighlightQuery} from '../../store/uiActions'
+import {toggleHighlightQuery, focusExample} from '../../store/uiActions'
 
 const Example = ({
   example,
@@ -10,7 +10,8 @@ const Example = ({
   color,
   focusedQueries,
   highlightedQuery,
-  highlightQuery
+  highlightQuery,
+  focusExample
 }) => {
   let style = {}
   let classNames = [styles.Example]
@@ -25,6 +26,7 @@ const Example = ({
     <div
       onMouseEnter={highlightQuery}
       onMouseLeave={highlightQuery}
+      onClick={focusExample}
       style={style}
       className={classNames.join(' ')}>
       <div className={styles.Example__imageWrapper}>
@@ -32,7 +34,7 @@ const Example = ({
           className={styles.Example__image}
           src={example.example.src} />
       </div>
-      
+
       <div className={styles.Example__description}>
         {example.imageDescription}
       </div>
@@ -51,9 +53,14 @@ export default connect(
   (dispatch, ownProps) => {
     return {
       highlightQuery: () => {
-        const {query} = ownProps.example
+        const {example: {query}} = ownProps
 
         dispatch(toggleHighlightQuery(query))
+      },
+      focusExample: (e) => {
+        const {example: {_id}} = ownProps
+
+        dispatch(focusExample(_id))
       }
     }
   }

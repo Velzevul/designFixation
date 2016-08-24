@@ -8,6 +8,7 @@ import KeywordList from '../KeywordList'
 import CollectionView from '../CollectionView'
 import KeywordView from '../KeywordView'
 import QueryView from '../QueryView'
+import CloseupView from '../CloseupView'
 import Title from '../Title'
 import Flex from '../../layouts/Flex'
 
@@ -45,7 +46,7 @@ class App extends React.Component {
   }
 
   render () {
-    const {focusedQueries, focusedKeywords, condition, dispatch} = this.props
+    const {focusedQueries, focusedKeywords, focusedExample, condition, dispatch} = this.props
 
     let bodyEl = ''
     if (focusedQueries.length > 0) {
@@ -64,6 +65,11 @@ class App extends React.Component {
 
     return (
       <div className={styles.App}>
+        {focusedExample
+          ? <CloseupView />
+          : ''
+        }
+
         <div className={styles.AppSidebar}>
           <div className={styles.AppSidebar__title}>
             <Title title="Design Task" />
@@ -137,7 +143,8 @@ export default connect(
       taskAlias: state.study.taskAlias,
       condition: state.study.condition,
       focusedQueries: state.ui.focusedQueries,
-      focusedKeywords: state.ui.focusedKeywords
+      focusedKeywords: state.ui.focusedKeywords,
+      focusedExample: state.ui.focusedExample
     }
   }
 )(App)
