@@ -13,9 +13,7 @@ const PATHS = {
   app: path.join(__dirname, 'app')
 }
 
-const getPlugins = ({
-  minify = false
-}) => {
+const getPlugins = () => {
   let plugins = []
 
   plugins.push(new webpack.DefinePlugin({
@@ -32,7 +30,7 @@ const getPlugins = ({
     allChunks: true
   }))
 
-  if (minify) {
+  if (NODE_ENV === 'production') {
     plugins.push(new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
@@ -51,7 +49,7 @@ const config = {
   output: {
     path: PATHS.app,
     filename: '[name].js',
-    publicPath: '/app/'
+    publicPath: NODE_ENV === 'production' ? '/inspirationSeeking/' : '/app/'
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
@@ -77,7 +75,7 @@ const config = {
       }
     ]
   },
-  plugins: getPlugins({minify: NODE_ENV === 'production'}),
+  plugins: getPlugins(),
   devtool: NODE_ENV === 'production' ? 'source-map' : 'cheap-inline-module-source-map',
   watch: NODE_ENV === 'development',
   postcss: () => {
