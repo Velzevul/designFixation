@@ -30,9 +30,14 @@ class App extends React.Component {
   componentWillReceiveProps (newProps) {
     const {focusedGroupPage, focusedGroupQuery} = newProps
 
-    if (focusedGroupPage !== this.props.focusedGroupPage && focusedGroupQuery !== this.props.focusedGroupQuery) {
-      if (focusedGroupQuery) {
-        const matchingElements = Array.prototype.slice.call(document.querySelectorAll(`.${focusedGroupQuery.replace(/\s/g, '_').replace(/"/g, '')}-${focusedGroupPage}`))
+    if (focusedGroupPage !== this.props.focusedGroupPage || focusedGroupQuery !== this.props.focusedGroupQuery) {
+      if (focusedGroupPage) {
+        let selectorQuery = `.page${focusedGroupPage}`
+        if (focusedGroupQuery) {
+          selectorQuery = `${selectorQuery}.${focusedGroupQuery.replace(/\s/g, '_').replace(/"/g, '')}`
+        }
+        console.log(selectorQuery)
+        const matchingElements = Array.prototype.slice.call(document.querySelectorAll(selectorQuery))
         const topMatchingElement = matchingElements.sort((a, b) => {
           return a.offsetTop - b.offsetTop
         })[0]

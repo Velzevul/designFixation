@@ -15,8 +15,8 @@ const ExamplesBar = ({
   toggleFocusExampleGroup
 }) => {
   let classNames = [styles.ExamplesBar]
-  if (focusedGroupQuery) {
-    if (focusedGroupQuery !== query || focusedGroupPage !== page) {
+  if (focusedGroupPage) {
+    if (focusedGroupQuery && focusedGroupQuery !== query || focusedGroupPage !== page) {
       classNames.push(styles.ExamplesBar_dimmed)
     }
   }

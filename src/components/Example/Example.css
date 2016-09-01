@@ -22,6 +22,7 @@
     transition-property: box-shadow;
     transition-duration: 0.2;
     box-shadow: 0 0 0 var(--colorAccent2);
+    border: 1px solid var(--colorBorder);
   }
 
   &__image {
@@ -61,8 +62,13 @@
   .Example_dimmed {
     opacity: 0.05;
   }
-  .Example_highlighted {
+  /*.Example_highlighted {
     & .Example__imageWrapper {
-      box-shadow: 0 0 15px 5px black;
+      box-shadow: 0 0 10px 0 color(black alpha(-50%));
+    }
+  }*/
+  .Example_focused {
+    & .Example__imageWrapper {
+      box-shadow: 0 0 10px 0 color(black alpha(-50%));
     }
   }

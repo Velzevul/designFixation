@@ -9,10 +9,14 @@ const Example = ({
   focusedGroupQuery,
   highlightedExampleId
 }) => {
-  let classNames = [styles.Example, `${example.query.replace(/\s/g, '_').replace(/"/g, '')}-${example.relevance}`]
-  if (focusedGroupQuery) {
-    if (focusedGroupQuery !== example.query || focusedGroupPage !== example.relevance) {
+  let classNames = [styles.Example, example.query.replace(/\s/g, '_').replace(/"/g, ''), `page${example.relevance}`]
+  if (focusedGroupPage) {
+    if (focusedGroupQuery && focusedGroupQuery !== example.query) {
       classNames.push(styles.Example_dimmed)
+    } else if (focusedGroupPage !== example.relevance) {
+      classNames.push(styles.Example_dimmed)
+    } else {
+      classNames.push(styles.Example_focused)
     }
   }
 
