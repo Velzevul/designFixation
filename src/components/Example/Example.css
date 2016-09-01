@@ -27,8 +27,6 @@
   &__image {
     display: block;
     max-width: 100%;
-
-    cursor: pointer;
   }
 
   &__descriptionOverlay {
@@ -61,7 +59,7 @@
   }
 }
   .Example_dimmed {
-    opacity: 0.1;
+    opacity: 0.05;
   }
   .Example_highlighted {
     & .Example__imageWrapper {

@@ -5,6 +5,7 @@ import styles from './Query.css'
 import Media from '../../layouts/Media'
 import Flex from '../../layouts/Flex'
 import ExamplesBar from '../ExamplesBar'
+import Block from '../../layouts/Block'
 
 const Query = ({
   query,
@@ -14,7 +15,7 @@ const Query = ({
     {
       label: '10+',
       page: 10,
-      examples: examples.filter(e => e.relevance >= 10)
+      examples: examples.filter(e => e.relevance === 10)
     }
   ]
   for (let i = 9; i > 0; i--) {
@@ -32,16 +33,18 @@ const Query = ({
     <div className={styles.qChart}>
       <div className={styles.qChart__title}>Search Result Pages</div>
 
-      <div className={styles.qChart__canvas}>
-        {searchResultsChartData.map((s, index) =>
-          <ExamplesBar
-            key={index}
-            query={query.query}
-            page={s.page}
-            label={s.label}
-            examples={examples.filter(e => e.relevance === s.page)} />
-        )}
-      </div>
+      <Block n={0.5}>
+        <div className={styles.qChart__canvas}>
+          {searchResultsChartData.map((s, index) =>
+            <ExamplesBar
+              key={index}
+              query={query.query}
+              page={s.page}
+              label={s.label}
+              examples={examples.filter(e => e.relevance === s.page)} />
+          )}
+        </div>
+      </Block>
     </div>
   )
 
@@ -49,13 +52,15 @@ const Query = ({
     <div className={styles.qChart}>
       <div className={styles.qChart__title}>Related Images</div>
 
-      <div className={styles.qChart__canvas}>
-        <ExamplesBar
-          query={query.query}
-          page={-1}
-          theme="accent2"
-          examples={examples.filter(e => e.relevance === -1)} />
-      </div>
+      <Block n={0.5}>
+        <div className={styles.qChart__canvas}>
+          <ExamplesBar
+            query={query.query}
+            page={-1}
+            theme="accent2"
+            examples={examples.filter(e => e.relevance === -1)} />
+        </div>
+      </Block>
     </div>
   )
 
@@ -73,12 +78,15 @@ const Query = ({
         </div>
       </div>
 
-      <div className={styles.Query__body}>
-        <Media
-          alignItems="stretch"
-          figure={searchResultsChart}
-          body={relatedImagesChart} />
-      </div>
+      {query.examplesCount
+        ? <div className={styles.Query__body}>
+          <Media
+            alignItems="stretch"
+            figure={searchResultsChart}
+            body={relatedImagesChart} />
+        </div>
+        : ''
+      }
     </div>
   )
 }

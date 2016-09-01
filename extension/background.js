@@ -72,7 +72,9 @@ chrome.runtime.onMessage.addListener(message => {
             currentQuery.examples[example.id] = currentQuery.nextLoadedPage
           }
 
-          currentQuery.nextLoadedPage += 1
+          if (currentQuery.nextLoadedPage < 10) {
+            currentQuery.nextLoadedPage += 1
+          }
         }
       }
     } else if (message.type === 'closeUpExamples') {

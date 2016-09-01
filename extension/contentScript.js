@@ -14,7 +14,7 @@ setInterval(() => {
 
       chrome.runtime.sendMessage({
         type: 'url',
-        query,
+        query: `search "${query}"`,
         url: window.location.href
       })
     } else if (categoriesRegexp.test(window.location.pathname)) {
@@ -22,7 +22,7 @@ setInterval(() => {
 
       chrome.runtime.sendMessage({
         type: 'url',
-        query: `${category} category`,
+        query: `category "${category}"`,
         url: window.location.href
       })
     } else if (topicsRegexp.test(window.location.pathname)) {
@@ -30,7 +30,7 @@ setInterval(() => {
 
       chrome.runtime.sendMessage({
         type: 'url',
-        query: `${topic} topic`,
+        query: `topic "${topic}"`,
         url: window.location.href
       })
     } else if (pinRegexp.test(window.location.pathname)) {
@@ -41,7 +41,7 @@ setInterval(() => {
 
       chrome.runtime.sendMessage({
         type: 'url',
-        query: `${boardName} board`,
+        query: `board "${boardName}"`,
         url: window.location.href
       })
     }

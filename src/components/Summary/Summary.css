@@ -1,8 +1,7 @@
 @import '../../styles/variables.css';
 
-.Query {
-  padding-bottom: calc(var(--baseline) * 1.5);
-  border-bottom: 1px solid var(--colorBorder);
+.Summary {
+  /**/
 
   &__header {
     padding: calc(var(--baseline) / 2);
@@ -13,23 +12,25 @@
   }
 }
 
-.qHeader {
-  /**/
+.sHeader {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 
-  &__query {
-    font-size: var(--fontSizeMed);
-    font-weight: 700;
-    color: var(--colorText1);
+  &__counter {
+    font-size: calc(var(--baseline) * 3);
+    font-weight: 300;
+    color: var(--colorAccent2);
   }
 
-  &__examplesCount {
-    font-weight: 300;
+  &__body {
     font-size: var(--fontSizeSmall);
-    color: var(--colorText2);
+    font-weight: 600;
+    color: var(--colorText1);
   }
 }
 
-.qChart {
+.sChart {
   height: 100%;
   display: flex;
   flex-direction: column-reverse;

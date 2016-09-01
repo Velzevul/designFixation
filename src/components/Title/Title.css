@@ -1,0 +1,35 @@
+@import '../../styles/variables.css';
+
+.Title {
+  position: relative;
+  width: 100%;
+  padding: calc(var(--baseline) * 1.5) 0;
+
+  font-size: var(--fontSizeSmall);
+  font-weight: 700;
+  text-transform: uppercase;
+
+  text-align: center;
+  color: var(--colorAccent1);
+
+  &__text {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    padding: 0 calc(var(--baseline));
+    background: white;
+  }
+
+  &:before {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 0;
+    content: '';
+    display: block;
+
+    height: calc(var(--baseline) * 2.25);
+
+    border-bottom: 1px solid var(--colorAccent1);
+  }
+}

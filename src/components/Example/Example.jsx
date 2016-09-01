@@ -9,7 +9,7 @@ const Example = ({
   focusedGroupQuery,
   highlightedExampleId
 }) => {
-  let classNames = [styles.Example, `${example.query.replace(/\s/g, '_')}-${example.relevance}`]
+  let classNames = [styles.Example, `${example.query.replace(/\s/g, '_').replace(/"/g, '')}-${example.relevance}`]
   if (focusedGroupQuery) {
     if (focusedGroupQuery !== example.query || focusedGroupPage !== example.relevance) {
       classNames.push(styles.Example_dimmed)

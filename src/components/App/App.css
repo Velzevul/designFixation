@@ -10,9 +10,26 @@
     overflow: auto;
     position: relative;
   }
+}
 
-  &__sidebar {
-    width: calc(var(--baseline) * 30);
+.AppSidebar {
+  width: calc(var(--baseline) * 32);
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+
+  &__heading {
+    padding: 0 calc(var(--baseline) * 1);
+  }
+
+  &__section {
+    padding: calc(var(--baseline) * 0) calc(var(--baseline) * 2.5);
+  }
+
+  &__section_full {
+    flex: 1;
     overflow: auto;
   }
 }

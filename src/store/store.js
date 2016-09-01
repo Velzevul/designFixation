@@ -5,10 +5,10 @@ import rootReducer from './rootReducer'
 
 const middleware = [thunkMiddleware]
 
-if (process.env.NODE_ENV === 'development') {
-  const logger = createLogger()
-  middleware.push(logger)
-}
+// if (process.env.NODE_ENV === 'development') {
+//   const logger = createLogger()
+//   middleware.push(logger)
+// }
 
 const configureStore = (initialState) => {
   return createStore(

@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import styles from './App.css'
 import QueryList from '../QueryList'
 import CollectionView from '../CollectionView'
+import Summary from '../Summary'
+import Title from '../Title'
 
 import socket from '../../store/socket'
 import {receiveData, receiveExample, receiveQuery} from '../../store/dataActions'
@@ -16,10 +18,10 @@ const scrollTo = (element, to, duration) => {
 
     setTimeout(() => {
       element.scrollTop = element.scrollTop + perTick
-      if (element.scrollTop === to) {
-        return
+      if ((difference > 0 && element.scrollTop < to) ||
+          (difference < 0 && element.scrollTop > to)) {
+        scrollTo(element, to, duration - 10)
       }
-      scrollTo(element, to, duration - 10)
     }, 10)
   }
 }
@@ -30,7 +32,7 @@ class App extends React.Component {
 
     if (focusedGroupPage !== this.props.focusedGroupPage && focusedGroupQuery !== this.props.focusedGroupQuery) {
       if (focusedGroupQuery) {
-        const matchingElements = Array.prototype.slice.call(document.querySelectorAll(`.${focusedGroupQuery.replace(/\s/g, '_')}-${focusedGroupPage}`))
+        const matchingElements = Array.prototype.slice.call(document.querySelectorAll(`.${focusedGroupQuery.replace(/\s/g, '_').replace(/"/g, '')}-${focusedGroupPage}`))
         const topMatchingElement = matchingElements.sort((a, b) => {
           return a.offsetTop - b.offsetTop
         })[0]
@@ -73,8 +75,22 @@ class App extends React.Component {
     let sidebarEl = ''
     if (condition === 'system') {
       sidebarEl = (
-        <div className={styles.App__sidebar}>
-          <QueryList />
+        <div className={styles.AppSidebar}>
+          <div className={styles.AppSidebar__heading}>
+            <Title title="Collection Summary" />
+          </div>
+
+          <div className={styles.AppSidebar__section}>
+            <Summary />
+          </div>
+
+          <div className={styles.AppSidebar__heading}>
+            <Title title="Search History" />
+          </div>
+
+          <div className={`${styles.AppSidebar__section} ${styles.AppSidebar__section_full}`}>
+            <QueryList />
+          </div>
         </div>
       )
     }
