@@ -1,24 +1,62 @@
 @import '../../styles/variables.css';
 
 .Query {
-  position: relative;
+  padding: calc(var(--baseline) * 2) 0;
 
-  padding: calc(var(--baseline) / 2);
-  margin-left: -calc(var(--baseline) / 2);
-  cursor: pointer;
+  &__header {
+    padding:  0
+              0
+              calc(var(--baseline) / 2)
+              0;
 
-  transition-property: background;
-  transition-duration: 0.2s;
-}
-  .Query_isFocused {
-    &:after {
-      content:'\00D7';
-      position: absolute;
-      top: 0;
-      right: var(--baseline);
-      display: block;
-
-      font-weight: 600;
-      line-height: calc(var(--fontSizeMed) * 2.4);
-    }
+    border-bottom: 1px solid var(--colorBorder);
   }
+
+  &__body {
+    padding:  calc(var(--baseline))
+              0
+              0
+              0;
+  }
+}
+
+.qHeader {
+  /**/
+
+  &__query {
+    font-size: var(--fontSizeLarge);
+    color: var(--colorText1);
+  }
+
+  &__examplesCount {
+    font-weight: 700;
+    font-size: var(--fontSizeSmall);
+    color: var(--colorText2);
+  }
+}
+
+.qChart {
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+  justify-content: flex-start;
+
+  &__title {
+    height: calc(var(--baseline) * 3);
+
+    font-size: var(--fontSizeSmall);
+    line-height: calc(var(--baseline) * 3);
+
+    text-align: center;
+  }
+
+  &__canvas {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    min-height: calc(var(--baseline) * 5);
+  }
+}

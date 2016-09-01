@@ -4,20 +4,15 @@
   --fontFamily: 'Open Sans', sans-serif;
   --fontSizeSmall: 0.750rem;
   --fontSizeMed: 0.875rem;
-  --fontSizeLarge: 1.250rem;
-  --fontSizeDefault: var(--fontSizeMed);
+  --fontSizeLarge: 1rem;
 
-  --colorTextLight: white;
-  --colorTextMed:   #CECECE;
-  --colorTextDark:  #8C8D8E;
+  --colorText1: #142737;
+  --colorText2: #848484;
 
-  --colorBorder:    #848586;
+  --colorBorder:    #C3C9CD;
 
-  --colorBgXDark: #1d1e1f;
-  --colorBgDark: #3C3E3F;
-
-  --colorAccent1: #68a1e4;
-  --colorAccent2: #00FFFE;
+  --colorAccent1: #407BAC;
+  --colorAccent2: #D6934B;
   --colorError:   #E46868;
   --colorSuccess: #6EB96F;
 }

@@ -7,8 +7,10 @@
             calc(var(--baseline) * 1.5)
             calc(var(--baseline) * 1.5);
 
-  transition-property: background-color;
-  transition-duration: 0.1s;
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 0.2s;
+  overflow: hidden;
 
   &__imageWrapper {
     max-height: calc(var(--baseline) * 28);
@@ -16,6 +18,10 @@
 
     transition-property: opacity;
     transition-duration: 0.1s;
+
+    transition-property: box-shadow;
+    transition-duration: 0.2;
+    box-shadow: 0 0 0 var(--colorAccent2);
   }
 
   &__image {
@@ -25,20 +31,40 @@
     cursor: pointer;
   }
 
+  &__descriptionOverlay {
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    top: 100%;
+    left: 0; right: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch;
+
+    transition-property: top;
+    transition-duration: 0.2s;
+  }
+
   &__description {
     padding: calc(var(--baseline) / 4) calc(var(--baseline));
-    background: color(black);
+    font-size: var(--fontSizeMed);
     color: white;
-    font-size: var(--fontSizeSmall);
+    background: color(#000 alpha(-20%));
+  }
+
+  &:hover {
+    & .Example__descriptionOverlay {
+      top: 0;
+    }
   }
 }
-  .Example_compact {
-    padding:  calc(var(--baseline) * 1)
-              calc(var(--baseline) * 1)
-              calc(var(--baseline) * 1)
-              calc(var(--baseline) * 1);
-
+  .Example_dimmed {
+    opacity: 0.1;
+  }
+  .Example_highlighted {
     & .Example__imageWrapper {
-      max-height: calc(var(--baseline) * 15);
+      box-shadow: 0 0 15px 5px black;
     }
   }

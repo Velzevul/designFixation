@@ -19,7 +19,7 @@
 
 :global(body) {
   font-family: var(--fontFamily);
-  font-size: var(--fontSizeDefault);
+  font-size: var(--fontSizeMed);
   line-height: 1.5;
 }
 

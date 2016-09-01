@@ -2,32 +2,27 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import styles from './Example.css'
-import {toggleHighlightQuery, focusExample} from '../../store/uiActions'
 
 const Example = ({
   example,
-  compact,
-  color,
-  focusedQueries,
-  highlightedQuery,
-  highlightQuery,
-  focusExample
+  focusedGroupPage,
+  focusedGroupQuery,
+  highlightedExampleId
 }) => {
-  let style = {}
-  let classNames = [styles.Example]
-  if (compact) {
-    classNames.push(styles.Example_compact)
+  let classNames = [styles.Example, `${example.query.replace(/\s/g, '_')}-${example.relevance}`]
+  if (focusedGroupQuery) {
+    if (focusedGroupQuery !== example.query || focusedGroupPage !== example.relevance) {
+      classNames.push(styles.Example_dimmed)
+    }
   }
-  if (focusedQueries.length > 1 && highlightedQuery === example.query) {
-    style.backgroundColor = `rgba(${color.slice(4, color.length - 1)}, 0.3)`
+
+  if (highlightedExampleId === example._id) {
+    classNames.push(styles.Example_highlighted)
   }
 
   return (
     <div
-      onMouseEnter={highlightQuery}
-      onMouseLeave={highlightQuery}
-      onClick={focusExample}
-      style={style}
+      id={example._id}
       className={classNames.join(' ')}>
       <div className={styles.Example__imageWrapper}>
         <img
@@ -35,8 +30,10 @@ const Example = ({
           src={example.example.src} />
       </div>
 
-      <div className={styles.Example__description}>
-        {example.imageDescription}
+      <div className={styles.Example__descriptionOverlay}>
+        <div className={styles.Example__description}>
+          {example.imageDescription}
+        </div>
       </div>
     </div>
   )
@@ -45,23 +42,9 @@ const Example = ({
 export default connect(
   (state, ownProps) => {
     return {
-      focusedQueries: state.ui.focusedQueries,
-      highlightedQuery: state.ui.highlightedQuery,
-      color: state.data.queries.filter(q => q.query === ownProps.example.query)[0].color
-    }
-  },
-  (dispatch, ownProps) => {
-    return {
-      highlightQuery: () => {
-        const {example: {query}} = ownProps
-
-        dispatch(toggleHighlightQuery(query))
-      },
-      focusExample: (e) => {
-        const {example: {_id}} = ownProps
-
-        dispatch(focusExample(_id))
-      }
+      focusedGroupPage: state.ui.focusedGroupPage,
+      focusedGroupQuery: state.ui.focusedGroupQuery,
+      highlightedExampleId: state.ui.highlightedExampleId
     }
   }
 )(Example)

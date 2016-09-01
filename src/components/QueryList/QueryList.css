@@ -2,4 +2,8 @@
 
 .QueryList {
   padding: 0 calc(var(--baseline) * 2);
+
+  &__item {
+    /**/
+  }
 }

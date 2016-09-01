@@ -11,9 +11,12 @@ class QueryList extends React.Component {
     return (
       <div className={styles.QueryList}>
         {queries.map((q, index) =>
-          <Query
+          <div
             key={index}
-            query={q} />
+            className={styles.QueryList__item}>
+            <Query
+              query={q} />
+          </div>
         )}
       </div>
     )

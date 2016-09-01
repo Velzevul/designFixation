@@ -1,15 +1,12 @@
 export default {
   data: {
     queries: [],
-    examples: [],
-    task: {},
-    stemDictionary: {}
+    examples: []
   },
   ui: {
-    highlightedQuery: null,
-    focusedQueries: [],
-    focusedKeywords: [],
-    focusedExample: null
+    focusedGroupPage: null,
+    focusedGroupQuery: null,
+    highlightedExampleId: null
   },
   study: {
     participantId: '',

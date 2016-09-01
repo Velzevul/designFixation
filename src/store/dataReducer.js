@@ -1,6 +1,5 @@
 import {
   RECEIVE_DATA,
-  RECEIVE_QUERY_TASK,
   RECEIVE_EXAMPLE,
   RECEIVE_QUERY,
   INC_EXAMPLE_COUNTER
@@ -15,19 +14,14 @@ const data = (
     case RECEIVE_DATA:
       return Object.assign({}, state, {
         queries: action.queries,
-        examples: action.examples,
-        task: action.task,
-        stemDictionary: action.examples.reduce((carry, current) => {
-          return Object.assign({}, carry, current.stemDictionary)
-        }, state.stemDictionary)
+        examples: action.examples
       })
     case RECEIVE_EXAMPLE:
       return Object.assign({}, state, {
         examples: [
           ...state.examples,
           action.example
-        ],
-        stemDictionary: Object.assign({}, state.stemDictionary, action.example.stemDictionary)
+        ]
       })
     case RECEIVE_QUERY:
       return Object.assign({}, state, {
@@ -42,18 +36,6 @@ const data = (
           if (q.query === action.query) {
             return Object.assign({}, q, {
               examplesCount: q.examplesCount + 1
-            })
-          } else {
-            return q
-          }
-        })
-      })
-    case RECEIVE_QUERY_TASK:
-      return Object.assign({}, state, {
-        queries: state.queries.map(q => {
-          if (q.query === action.query) {
-            return Object.assign({}, q, {
-              matchedTask: action.matchedTask
             })
           } else {
             return q

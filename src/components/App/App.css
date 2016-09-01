@@ -8,42 +8,11 @@
   &__main {
     flex: 1;
     overflow: auto;
-  }
-}
-
-.AppSidebar {
-  display: flex;
-  flex-flow: column;
-  justify-items: stretch;
-  width: calc(var(--baseline) * 25);
-
-  &__header {
-    /**/
+    position: relative;
   }
 
-  &__body {
-    flex: 1;
+  &__sidebar {
+    width: calc(var(--baseline) * 30);
     overflow: auto;
-  }
-
-  &__title {
-    padding:  calc(var(--baseline) * 2)
-              calc(var(--baseline) * 2)
-              calc(var(--baseline) * 1)
-              calc(var(--baseline) * 2);
-  }
-
-  &__clearFilters {
-    font-size: var(--fontSizeSmall);
-    font-weight: 400;
-    line-height: 1.5;
-
-    color: var(--colorError);
-
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
-    }
   }
 }

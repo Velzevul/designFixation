@@ -1,5 +1,0 @@
-@import '../../styles/variables.css';
-
-.KeywordList {
-  padding: 0 calc(var(--baseline) * 2);
-}

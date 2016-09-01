@@ -2,22 +2,44 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import styles from './App.css'
-import TaskDescription from '../TaskDescription'
 import QueryList from '../QueryList'
-import KeywordList from '../KeywordList'
 import CollectionView from '../CollectionView'
-import KeywordView from '../KeywordView'
-import QueryView from '../QueryView'
-import CloseupView from '../CloseupView'
-import Title from '../Title'
-import Flex from '../../layouts/Flex'
 
 import socket from '../../store/socket'
 import {receiveData, receiveExample, receiveQuery} from '../../store/dataActions'
-import {clearFocusedQueries, clearFocusedKeywords} from '../../store/uiActions'
 import {receiveStudy, killStudy} from '../../store/studyActions'
 
+const scrollTo = (element, to, duration) => {
+  if (duration > 0) {
+    const difference = to - element.scrollTop
+    const perTick = difference / duration * 10
+
+    setTimeout(() => {
+      element.scrollTop = element.scrollTop + perTick
+      if (element.scrollTop === to) {
+        return
+      }
+      scrollTo(element, to, duration - 10)
+    }, 10)
+  }
+}
+
 class App extends React.Component {
+  componentWillReceiveProps (newProps) {
+    const {focusedGroupPage, focusedGroupQuery} = newProps
+
+    if (focusedGroupPage !== this.props.focusedGroupPage && focusedGroupQuery !== this.props.focusedGroupQuery) {
+      if (focusedGroupQuery) {
+        const matchingElements = Array.prototype.slice.call(document.querySelectorAll(`.${focusedGroupQuery.replace(/\s/g, '_')}-${focusedGroupPage}`))
+        const topMatchingElement = matchingElements.sort((a, b) => {
+          return a.offsetTop - b.offsetTop
+        })[0]
+
+        scrollTo(this._main, topMatchingElement.offsetTop, 200)
+      }
+    }
+  }
+
   componentWillMount () {
     const {dispatch} = this.props
 
@@ -46,90 +68,25 @@ class App extends React.Component {
   }
 
   render () {
-    const {focusedQueries, focusedKeywords, focusedExample, condition, dispatch} = this.props
+    const {condition} = this.props
 
-    let bodyEl = ''
-    if (focusedQueries.length > 0) {
-      bodyEl = (
-        <QueryView />
-      )
-    } else if (focusedKeywords.length > 0) {
-      bodyEl = (
-        <KeywordView />
-      )
-    } else {
-      bodyEl = (
-        <CollectionView />
+    let sidebarEl = ''
+    if (condition === 'system') {
+      sidebarEl = (
+        <div className={styles.App__sidebar}>
+          <QueryList />
+        </div>
       )
     }
 
     return (
       <div className={styles.App}>
-        {focusedExample
-          ? <CloseupView />
-          : ''
-        }
+        {sidebarEl}
 
-        <div className={styles.AppSidebar}>
-          <div className={styles.AppSidebar__title}>
-            <Title title="Design Task" />
-          </div>
-
-          <div className={styles.AppSidebar__header}>
-            <TaskDescription />
-          </div>
-
-          {condition === 'system'
-            ? <div className={styles.AppSidebar__title}>
-              <Flex
-                alignItems="center"
-                justifyContent="space-between">
-                <Title title="Searches" />
-                {focusedQueries.length > 0
-                  ? <button
-                    onClick={() => dispatch(clearFocusedQueries())}
-                    className={styles.AppSidebar__clearFilters}>clear all</button>
-                  : ''
-                }
-              </Flex>
-            </div>
-            : ''
-          }
-
-          {condition === 'system'
-            ? <div className={styles.AppSidebar__body}>
-              <QueryList />
-            </div>
-            : ''
-          }
-
-          {condition === 'system'
-            ? <div className={styles.AppSidebar__title}>
-              <Flex
-                alignItems="center"
-                justifyContent="space-between">
-                <Title title="Common Keywords" />
-                {focusedKeywords.length > 0
-                  ? <button
-                    onClick={() => dispatch(clearFocusedKeywords())}
-                    className={styles.AppSidebar__clearFilters}>clear all</button>
-                  : ''
-                }
-              </Flex>
-            </div>
-            : ''
-          }
-
-          {condition === 'system'
-            ? <div className={styles.AppSidebar__body}>
-              <KeywordList />
-            </div>
-            : ''
-          }
-        </div>
-
-        <div className={styles.App__main}>
-          {bodyEl}
+        <div
+          ref={(el) => { this._main = el }}
+          className={styles.App__main}>
+          <CollectionView />
         </div>
       </div>
     )
@@ -140,11 +97,9 @@ export default connect(
   state => {
     return {
       sessionId: state.study.sessionId,
-      taskAlias: state.study.taskAlias,
       condition: state.study.condition,
-      focusedQueries: state.ui.focusedQueries,
-      focusedKeywords: state.ui.focusedKeywords,
-      focusedExample: state.ui.focusedExample
+      focusedGroupPage: state.ui.focusedGroupPage,
+      focusedGroupQuery: state.ui.focusedGroupQuery
     }
   }
 )(App)

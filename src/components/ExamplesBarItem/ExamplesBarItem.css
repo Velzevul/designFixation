@@ -1,0 +1,9 @@
+@import '../../styles/variables.css';
+
+.ExamplesBarItem {
+  width: 100%;
+  height: calc(var(--baseline) * 3/4);
+  margin-top: calc(var(--baseline) / 6);
+
+  background: var(--colorAccent1);
+}

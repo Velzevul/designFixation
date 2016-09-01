@@ -1,5 +1,0 @@
-@import '../../styles/variables.css';
-
-.QueryView {
-  padding: calc(var(--baseline) * 2);
-}

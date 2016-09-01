@@ -1,0 +1,31 @@
+@import '../../styles/variables.css';
+
+.ExamplesBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: calc(var(--baseline) * 1.25);
+  margin: 0 calc(var(--baseline) / 6);
+
+  cursor: pointer;
+
+  opacity: 1;
+
+  transition-property: opacity;
+  transition-duration: 0.2s;
+
+  &__label {
+    height: calc(var(--baseline) * 1.5);
+
+    font-size: 0.625rem;
+    line-height: calc(var(--baseline) * 1.5);
+
+    text-align: center;
+    color: var(--colorText2);
+  }
+}
+  .ExamplesBar_dimmed {
+    opacity: 0.2;
+  }
