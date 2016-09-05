@@ -1,7 +1,6 @@
 @import '../../styles/variables.css';
 
 .Example {
-  position: relative;
   padding:  calc(var(--baseline) * 1.5)
             calc(var(--baseline) * 1.5)
             calc(var(--baseline) * 1.5)
@@ -13,6 +12,8 @@
   overflow: hidden;
 
   &__imageWrapper {
+    display: block;
+    position: relative;
     max-height: calc(var(--baseline) * 28);
     overflow: hidden;
 
@@ -23,11 +24,17 @@
     transition-duration: 0.2;
     box-shadow: 0 0 0 var(--colorAccent2);
     border: 1px solid var(--colorBorder);
+
+    &:hover {
+      & .Example__descriptionOverlay {
+        top: 0;
+      }
+    }
   }
 
   &__image {
     display: block;
-    max-width: 100%;
+    width: 100%;
   }
 
   &__descriptionOverlay {
@@ -51,12 +58,6 @@
     font-size: var(--fontSizeMed);
     color: white;
     background: color(#000 alpha(-20%));
-  }
-
-  &:hover {
-    & .Example__descriptionOverlay {
-      top: 0;
-    }
   }
 }
   .Example_dimmed {

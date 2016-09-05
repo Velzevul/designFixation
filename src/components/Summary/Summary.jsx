@@ -11,6 +11,14 @@ const Summary = ({
   queriesCount,
   examples
 }) => {
+  const relatedImages = examples.filter(e => e.relevance === -1)
+  const relatedImagesPerColumn = 7
+  let relatedColsCount = Math.ceil(relatedImages.length / relatedImagesPerColumn)
+  let relatedImagesColumns = []
+  for (let i = 0; i < relatedColsCount; i++) {
+    relatedImagesColumns[i] = relatedImages.slice(i * relatedImagesPerColumn, (i + 1) * relatedImagesPerColumn)
+  }
+
   let searchResultsChartData = [
     {
       label: '10+',
@@ -54,11 +62,14 @@ const Summary = ({
 
       <Block n={0.5}>
         <div className={styles.sChart__canvas}>
-          <ExamplesBar
-            query={null}
-            page={-1}
-            theme="accent2"
-            examples={examples.filter(e => e.relevance === -1)} />
+          {relatedImagesColumns.map((c, index) =>
+            <ExamplesBar
+              key={index}
+              query={null}
+              page={-1}
+              theme="accent2"
+              examples={c} />
+          )}
         </div>
       </Block>
     </div>

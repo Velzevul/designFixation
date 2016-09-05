@@ -28,17 +28,20 @@ const Example = ({
     <div
       id={example._id}
       className={classNames.join(' ')}>
-      <div className={styles.Example__imageWrapper}>
+      <a
+        href={`https://pinterest.com/pin/${example.example.id}`}
+        className={styles.Example__imageWrapper}
+        target="_blank">
         <img
           className={styles.Example__image}
           src={example.example.src} />
-      </div>
 
-      <div className={styles.Example__descriptionOverlay}>
-        <div className={styles.Example__description}>
-          {example.imageDescription}
+        <div className={styles.Example__descriptionOverlay}>
+          <div className={styles.Example__description}>
+            {example.imageDescription}
+          </div>
         </div>
-      </div>
+      </a>
     </div>
   )
 }
