@@ -26,8 +26,8 @@
     border: 1px solid var(--colorBorder);
 
     &:hover {
-      & .Example__descriptionOverlay {
-        top: 0;
+      & .Example__description {
+        display: block;
       }
     }
   }
@@ -37,23 +37,13 @@
     width: 100%;
   }
 
-  &__descriptionOverlay {
+  &__description {
+    display: none;
     position: absolute;
     z-index: 1;
-    height: 100%;
-    top: 100%;
     left: 0; right: 0;
+    bottom: 0;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: stretch;
-
-    transition-property: top;
-    transition-duration: 0.2s;
-  }
-
-  &__description {
     padding: calc(var(--baseline) / 4) calc(var(--baseline));
     font-size: var(--fontSizeMed);
     color: white;

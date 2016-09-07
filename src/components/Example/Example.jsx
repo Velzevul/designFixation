@@ -36,10 +36,8 @@ const Example = ({
           className={styles.Example__image}
           src={example.example.src} />
 
-        <div className={styles.Example__descriptionOverlay}>
-          <div className={styles.Example__description}>
-            {example.imageDescription}
-          </div>
+        <div className={styles.Example__description}>
+          {example.imageDescription}
         </div>
       </a>
     </div>
